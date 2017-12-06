@@ -350,14 +350,22 @@ namespace BanHang
                 }
                 else// khách sỉ
                 {
-                    // tính chiết khấu khách sỉ
-                    int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
-                    // nếu tiền chiết khấu lưu trong hóa đơn, tổng tiền còn lại thì cập nhật vào công nợ khách hàng
+                    //if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+                    //{
+                    //    txtKhachThanhToan.Text = "";
+                    //    txtKhachThanhToan.Focus();
+                    //    HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
+                    //}
+
                     double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
-                    double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;//
-                    double ChietKhauKhachHang = DanhSachHoaDon[MaHoaDon].TongTien * (TyLeChietKhauKhachHang / (float)100);
-                    double CongNoMoi = CongNoCu + (TongTienKhachHang * -1);
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", CongNoCu.ToString(), CongNoMoi.ToString());
+                    double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachCanTra - DanhSachHoaDon[MaHoaDon].KhachThanhToan;//
+                    double CongNoMoi = 0;
+                    if (DanhSachHoaDon[MaHoaDon].KhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+                    {
+                        //có nợ mới
+                        CongNoMoi = CongNoCu + TongTienKhachHang;
+                    }
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon],"0", (TongTienKhachHang).ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 0;
