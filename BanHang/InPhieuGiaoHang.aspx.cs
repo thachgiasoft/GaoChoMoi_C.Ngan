@@ -13,9 +13,8 @@ namespace BanHang
         protected void Page_Load(object sender, EventArgs e)
         {
             string IDHoaDon = Request.QueryString["IDHoaDon"];
-            string KT = Request.QueryString["KT"];
-
-            if (Int32.Parse(KT) == 1)
+            int KT = Int32.Parse(Request.QueryString["KT"].ToString());
+            if (KT == 0)
             {
                 rpPhieuGiaoHang rp = new rpPhieuGiaoHang();
                 rp.Parameters["ID"].Value = IDHoaDon;
@@ -29,6 +28,7 @@ namespace BanHang
                 rp.Parameters["ID"].Visible = false;
                 reportView.Report = rp;
             }
+
         }
     }
 }

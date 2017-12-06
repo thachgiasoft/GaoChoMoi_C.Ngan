@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="DanhSachChiPhi.aspx.cs" Inherits="BanHang.DanhSachChiPhi" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-      <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridDanhSach_RowDeleting" OnRowInserting="gridDanhSach_RowInserting" OnRowUpdating="gridDanhSach_RowUpdating" OnInitNewRow="gridDanhSach_InitNewRow">
+    <%--popup chi tiet don hang--%>
+     <script type="text/javascript">
+         function OnMoreInfoClick(element, key) {
+             popup.SetContentUrl("InPhieuChi.aspx?ID=" + key);
+             popup.ShowAtElement();
+             // alert(key);
+         }
+    </script>  
+    <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridDanhSach_RowDeleting" OnRowInserting="gridDanhSach_RowInserting" OnRowUpdating="gridDanhSach_RowUpdating" OnInitNewRow="gridDanhSach_InitNewRow">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
         <Settings AutoFilterCondition="Contains" ShowFilterRow="True" ShowTitlePanel="True" />
@@ -108,4 +116,9 @@
             </TitlePanel>
         </Styles>
     </dx:ASPxGridView>
+    <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1100px"
+         Height="600px" FooterText="Thông tin"
+        HeaderText="Thông tin" ClientInstanceName="popup" EnableHierarchyRecreation="True" CloseAction="CloseButton">
+    </dx:ASPxPopupControl>
 </asp:Content>
