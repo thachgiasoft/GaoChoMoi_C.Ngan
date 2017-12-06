@@ -20,14 +20,9 @@ namespace BanHang
             }
             else
             {
-                //btnNhapExcel.Enabled = false;
-               // gridKhachHang.Columns["chucnang"].Visible = false;
+              
                 LoadGrid();
             }
-            //else
-            //{
-            //    Response.Redirect("Default.aspx");
-            //}
         }
         
         public void LoadGrid()
@@ -49,7 +44,7 @@ namespace BanHang
             string DienThoai = e.NewValues["DienThoai"] == null ? "" : e.NewValues["DienThoai"].ToString();
             string Email = e.NewValues["Email"] == null ? "" : e.NewValues["Email"].ToString();
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
-            string IDChietKhau = e.NewValues["IDChietKhau"].ToString();
+            string IDChietKhau = "2";
             if (dtKhachHang.KT_SDT_KH_CapNhat(DienThoai.Trim(), ID) == -1)
             {
                 if (dtKhachHang.KT_SDT_KH(DienThoai.Trim()) == 1)
@@ -82,7 +77,7 @@ namespace BanHang
             string MaKh = "";
             string Barcode = "";
             object ID;
-            string IDChietKhau = e.NewValues["IDChietKhau"].ToString();
+            string IDChietKhau = "2";
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
             if (DienThoai != "")
             {
@@ -134,10 +129,7 @@ namespace BanHang
             dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + ID, Session["IDKho"].ToString(), "Danh Mục", "Xóa");  
         }
         
-        protected void gridKhachHang_InitNewRow(object sender, DevExpress.Web.Data.ASPxDataInitNewRowEventArgs e)
-        {
-            e.NewValues["ChietKhau"] = "0";
-        }
+       
 
         protected void cmbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
         {
