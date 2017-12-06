@@ -9,22 +9,6 @@
 <body>
     <form id="form1" runat="server">
     <div>
-         <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="2">
-        <Items>
-            <dx:LayoutItem Caption="">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                        <dx:ASPxButton ID="btnDuyet" runat="server" Text="Duyệt Phiếu Kiểm Kho" HorizontalAlign="Right" VerticalAlign="Middle" OnClick="btnDuyet_Click">
-                            <Image IconID="spreadsheet_protectsheet_32x32">
-                            </Image>
-                            <Paddings Padding="4px" />
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-           
-        </Items>
-      </dx:ASPxFormLayout> 
              <dx:ASPxGridView runat="server" AutoGenerateColumns="False" Width="100%" ID="gridChiTietPhieuKiemKho" KeyFieldName="ID" OnRowDeleting="gridChiTietPhieuKiemKho_RowDeleting" OnRowUpdating="gridChiTietPhieuKiemKho_RowUpdating">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
@@ -80,8 +64,6 @@
             </Items>
         </EditFormLayoutProperties>
 <Columns>
-    <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" VisibleIndex="6" Name="chucnang">
-    </dx:GridViewCommandColumn>
     <dx:GridViewDataComboBoxColumn FieldName="IDHangHoa" Caption="H&#224;ng H&#243;a" VisibleIndex="1" ReadOnly="True">
     <PropertiesComboBox DataSourceID="sqlHangHoa" TextField="TenHangHoa" ValueField="ID"></PropertiesComboBox >
     </dx:GridViewDataComboBoxColumn>

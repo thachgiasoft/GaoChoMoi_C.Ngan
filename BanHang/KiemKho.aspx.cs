@@ -21,15 +21,12 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 72) == false)
-                    Response.Redirect("Default.aspx");
                 if (!IsPostBack)
                 {
                     txtNguoiLapPhieu.Text = Session["TenDangNhap"].ToString();
-                    cmbKho.Value = Session["IDKho"].ToString();
+                    IDPhieuKiemKho_Temp.Value = Session["IDNhanVien"].ToString();
                 }
                 LoadGrid(IDPhieuKiemKho_Temp.Value.ToString());
-
             }
         }
 
@@ -76,44 +73,6 @@ namespace BanHang
                 throw new Exception("Lỗi: Số lượng thực tế phải  >= 0");
             }
         }
-
-        protected void cmbKe_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbKe.Text != "")
-            {
-                // kiểm kho phải kiểm từng kệ.
-                data = new dtKiemKho();
-                data.XoaPhieuKiemKho_Temp_IDPhieuKiemKho(IDPhieuKiemKho_Temp.Value.ToString());
-                Random ran = new Random();
-                IDPhieuKiemKho_Temp.Value = ran.Next(100000, 999999).ToString();
-                dtKe k = new dtKe();
-                DataTable db = k.DanhSachChiTietKe(cmbKe.Value.ToString());
-                if (db.Rows.Count > 0)
-                {
-                    string IDPhieuKiemKho = IDPhieuKiemKho_Temp.Value.ToString();
-                    foreach (DataRow dr in db.Rows)
-                    {
-                        string IDHangHoa = dr["IDHangHoa"].ToString();
-                        string MaHang = dr["MaHang"].ToString();
-                        string IDonViTinh = dr["IDonViTinh"].ToString();
-                        int TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, Session["IDKho"].ToString());
-                        int ChechLech = -TonKho;
-                        DataTable dt = data.KTChiTietPhieuKiemKho_Temp(IDHangHoa, IDPhieuKiemKho, cmbKe.Value.ToString());
-                        if (dt.Rows.Count == 0)
-                        {
-                            data = new dtKiemKho();
-                            data.ThemPhieuKiemKho_Temp(IDPhieuKiemKho, IDHangHoa, TonKho, ChechLech, MaHang, IDonViTinh, cmbKe.Value.ToString());
-                        }
-                    }
-                    LoadGrid(IDPhieuKiemKho);
-                }
-                else
-                {
-                    Response.Write("<script language='JavaScript'> alert('Kệ chưa có hàng hóa.'); </script>");
-                }
-            }
-        }
-
         protected void txtNgayLapPhieu_Init(object sender, EventArgs e)
         {
             txtNgayLapPhieu.Date = DateTime.Today;
@@ -145,6 +104,22 @@ namespace BanHang
                         string IDKe = dr["IDKe"].ToString();
                         data = new dtKiemKho();
                         data.ThemPhieuKiemKho(ID1, IDHangHoa, TonKho, ChenhLech, ThucTe, MaHang, IDDonViTinh, IDKe);
+                        if (Int32.Parse(ChenhLech) > 0)
+                        {
+                            object TheKho1 = dtTheKho.ThemTheKho("", "Kiểm kho: " + dtTheKho.LayTenKho_ID(IDKho), "0", "0", (Int32.Parse(dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, IDKho).ToString()) + ChenhLech).ToString(), Session["IDNhanVien"].ToString(), IDKho, IDHangHoa, "Nhập", "0", "0", ChenhLech.ToString());
+                            if (TheKho1 != null)
+                            {
+                                dtCapNhatTonKho.CapNhatKho(IDHangHoa, ThucTe, IDKho);
+                            }
+                        }
+                        else if (Int32.Parse(ChenhLech) < 0)
+                        {
+                            object TheKho2 = dtTheKho.ThemTheKho("", "Kiểm kho: " + dtTheKho.LayTenKho_ID(IDKho), "0", "0", (Int32.Parse(dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, IDKho).ToString()) + ChenhLech).ToString(), Session["IDNhanVien"].ToString(), IDKho, IDHangHoa, "Xuất", "0", "0", ChenhLech.ToString());
+                            if (TheKho2 != null)
+                            {
+                                dtCapNhatTonKho.CapNhatKho(IDHangHoa, ThucTe, IDKho);
+                            }
+                        }
                     }
                     data = new dtKiemKho();
                     data.XoaPhieuKiemKho_Temp_IDPhieuKiemKho(IDPhieuKiemKho);
@@ -158,8 +133,36 @@ namespace BanHang
             }
             else
             {
-                cmbKe.Focus();
+                txtBarcode.Focus();
                 Response.Write("<script language='JavaScript'> alert('Danh sách kiểm kho rỗng.'); </script>");
+            }
+        }
+
+        protected void btnThemTemp_Click(object sender, EventArgs e)
+        {
+            if (txtBarcode.Text != "")
+            {
+                string IDPhieuKiemKho = IDPhieuKiemKho_Temp.Value.ToString();
+                dtBanHangLe dt = new dtBanHangLe();
+                DataTable tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString());
+                if (tbThongTin.Rows.Count > 0)
+                {
+                    string IDHangHoa = tbThongTin.Rows[0]["ID"].ToString();
+                    string MaHangHoa = tbThongTin.Rows[0]["MaHang"].ToString();
+                    string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
+                    int TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, Session["IDKho"].ToString());
+                    int ChechLech = -TonKho;
+                    DataTable dt1 = data.KTChiTietPhieuKiemKho_Temp(IDHangHoa, IDPhieuKiemKho);
+                    if (dt1.Rows.Count == 0)
+                    {
+                        data = new dtKiemKho();
+                        data.ThemPhieuKiemKho_Temp(IDPhieuKiemKho, IDHangHoa, TonKho, ChechLech, MaHangHoa, IDDonViTinh);
+                    }
+                    LoadGrid(IDPhieuKiemKho);
+                }
+                txtBarcode.Text = "";
+                txtBarcode.Value = "";
+                txtBarcode.Focus();
             }
         }
     }

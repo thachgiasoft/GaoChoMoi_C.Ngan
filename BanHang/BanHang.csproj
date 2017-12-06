@@ -135,6 +135,7 @@
     <Content Include="css\style.css" />
     <Content Include="DangNhap.aspx" />
     <Content Include="DangXuat.aspx" />
+    <Content Include="DanhSachChiPhi.aspx" />
     <Content Include="DanhSachHangHoa.aspx" />
     <Content Include="DanhSachKe.aspx" />
     <Content Include="DanhSachKhachHangTraHang.aspx" />
@@ -479,6 +480,13 @@
     <Compile Include="DangXuat.aspx.designer.cs">
       <DependentUpon>DangXuat.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DanhSachChiPhi.aspx.cs">
+      <DependentUpon>DanhSachChiPhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DanhSachChiPhi.aspx.designer.cs">
+      <DependentUpon>DanhSachChiPhi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DanhSachHangHoa.aspx.cs">
       <DependentUpon>DanhSachHangHoa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -535,6 +543,7 @@
     <Compile Include="Data\dtCapNhatTonKho.cs" />
     <Compile Include="Data\dtCheckDangNhap.cs" />
     <Compile Include="Data\dtChietKhau.cs" />
+    <Compile Include="Data\dtChiPhi.cs" />
     <Compile Include="Data\dtChiTietDonHangChiNhanh.cs" />
     <Compile Include="Data\dtCongNo.cs" />
     <Compile Include="Data\dtDanhMucThue.cs" />

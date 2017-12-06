@@ -55,10 +55,6 @@
                 </DataItemTemplate>
                 <HeaderStyle Wrap="True" />
             </dx:GridViewDataButtonEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh Điều Chỉnh" FieldName="IDKho" VisibleIndex="0">
-                <PropertiesComboBox DataSourceID="sqlKhoHang" TextField="TenCuaHang" ValueField="ID">
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Ghi Chú" VisibleIndex="3" FieldName="GhiChu">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataComboBoxColumn Caption="Người Điều Chỉnh" VisibleIndex="1" FieldName="IDNguoiDung">
@@ -69,14 +65,6 @@
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Trạng Thái" FieldName="TrangThai" VisibleIndex="5">
-                <PropertiesComboBox>
-                    <Items>
-                        <dx:ListEditItem Text="Đã duyệt" Value="1" />
-                        <dx:ListEditItem Text="Chưa duyệt" Value="0" />
-                    </Items>
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

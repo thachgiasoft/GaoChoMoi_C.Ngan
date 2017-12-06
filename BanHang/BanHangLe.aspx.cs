@@ -466,14 +466,13 @@ namespace BanHang
                                         FROM (
 	                                            select ID,TenKhachHang, DienThoai,DiaChi, row_number()over(order by MaKhachHang) as [rn] 
 	                                            FROM GPM_KhachHang
-	                                            WHERE ((TenKhachHang LIKE @TenKhachHang) OR (DienThoai LIKE @DienThoai) OR (DiaChi LIKE @DiaChi)) AND (IDKho = @IDKho) AND (DaXoa = 0)	
+	                                            WHERE ((TenKhachHang LIKE @TenKhachHang OR DienThoai LIKE @DienThoai OR DiaChi LIKE @DiaChi) AND (DaXoa = 0))
 	                                        ) as st 
                                         where st.[rn] between @startIndex and @endIndex ORDER BY TenKhachHang ASC";
             sqlKhachHang.SelectParameters.Clear();
             sqlKhachHang.SelectParameters.Add("TenKhachHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlKhachHang.SelectParameters.Add("DienThoai", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlKhachHang.SelectParameters.Add("DiaChi", TypeCode.String, string.Format("%{0}%", e.Filter));
-            sqlKhachHang.SelectParameters.Add("IDKho", TypeCode.Int32, Session["IDKho"].ToString());
             sqlKhachHang.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
             sqlKhachHang.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
             comboBox.DataSource = sqlKhachHang;

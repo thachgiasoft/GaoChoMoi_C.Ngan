@@ -29,7 +29,7 @@ namespace BanHang
                     if (dtKiemKho.LayTrangThaiKiemKho(IDPhieuKiemKho,Session["IDKho"].ToString()) == 1)
                     {
                         gridChiTietPhieuKiemKho.Columns["chucnang"].Visible = false;
-                        btnDuyet.Enabled = false;
+                        //btnDuyet.Enabled = false;
                     }
                     //if (dtKiemKho.LayIDKhoKiemKho(IDPhieuKiemKho) != Int32.Parse(Session["IDKho"].ToString()))
                     //{
@@ -115,7 +115,7 @@ namespace BanHang
                     }
                     data = new dtKiemKho();
                     data.CapNhatTrangThai(IDPhieuKiemKho);
-                    btnDuyet.Enabled = false;
+                    //btnDuyet.Enabled = false;
                     gridChiTietPhieuKiemKho.Columns["chucnang"].Visible = false;
 
                   //  dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Chi tiết phiếu kiểm kho", Session["IDKho"].ToString(), "Nhập xuất tồn", "Duyệt");

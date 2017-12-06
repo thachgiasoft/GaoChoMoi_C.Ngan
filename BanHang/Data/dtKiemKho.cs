@@ -157,12 +157,12 @@ namespace BanHang.Data
                 }
             }
         }
-        public DataTable KTChiTietPhieuKiemKho_Temp(string IDHangHoa, string IDPhieuKiemKho, string IDKe)
+        public DataTable KTChiTietPhieuKiemKho_Temp(string IDHangHoa, string IDPhieuKiemKho)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT * FROM [GPM_KiemKho_ChiTiet_Temp] WHERE [IDHangHoa]= '" + IDHangHoa + "' AND  [IDKe] = '" + IDKe + "' AND [IDPhieuKiemKho] = '" + IDPhieuKiemKho + "'";
+                string cmdText = "SELECT * FROM [GPM_KiemKho_ChiTiet_Temp] WHERE [IDHangHoa]= '" + IDHangHoa + "' AND [IDPhieuKiemKho] = '" + IDPhieuKiemKho + "'";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -172,17 +172,16 @@ namespace BanHang.Data
                 }
             }
         }
-        public void ThemPhieuKiemKho_Temp(string IDPhieuKiemKho, string IDHangHoa, int TonKho, int ChenhLech,string MaHang, string IDDonViTinh,string IDKe)
+        public void ThemPhieuKiemKho_Temp(string IDPhieuKiemKho, string IDHangHoa, int TonKho, int ChenhLech,string MaHang, string IDDonViTinh)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
                 try
                 {
                     myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_KiemKho_ChiTiet_Temp] ([IDPhieuKiemKho],[IDHangHoa],[TonKho],[ChenhLech],[MaHang],[IDDonViTinh],[IDKe]) VALUES (@IDPhieuKiemKho,@IDHangHoa,@TonKho,@ChenhLech,@MaHang,@IDDonViTinh,@IDKe)";
+                    string cmdText = "INSERT INTO [GPM_KiemKho_ChiTiet_Temp] ([IDPhieuKiemKho],[IDHangHoa],[TonKho],[ChenhLech],[MaHang],[IDDonViTinh]) VALUES (@IDPhieuKiemKho,@IDHangHoa,@TonKho,@ChenhLech,@MaHang,@IDDonViTinh)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
-                        myCommand.Parameters.AddWithValue("@IDKe", IDKe);
                         myCommand.Parameters.AddWithValue("@IDDonViTinh", IDDonViTinh);
                         myCommand.Parameters.AddWithValue("@MaHang", MaHang);
                         myCommand.Parameters.AddWithValue("@IDPhieuKiemKho", IDPhieuKiemKho);
