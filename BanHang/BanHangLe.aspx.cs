@@ -78,7 +78,7 @@ namespace BanHang
         public void ThemHoaDonMoi()
         {
              dtKhachHang dtkh = new dtKhachHang();
-             DataTable da = dtkh.LayDanhSachKhachHang(Session["IDKho"].ToString());
+             DataTable da = dtkh.LayDanhSachKhachHang();
              HoaDon hd = new HoaDon(da.Rows.Count);
             DanhSachHoaDon.Add(hd);
             Tab tabHoaDonNew = new Tab();
@@ -414,7 +414,7 @@ namespace BanHang
         public void DanhSachKhachHang()
         {
             dtKhachHang dtkh = new dtKhachHang();
-            ccbKhachHang.DataSource = dtkh.LayDanhSachKhachHang(Session["IDKho"].ToString());
+            ccbKhachHang.DataSource = dtkh.LayDanhSachKhachHang();
             ccbKhachHang.TextField = "TenKhachHang";
             ccbKhachHang.ValueField = "ID";
             ccbKhachHang.DataBind();

@@ -28,7 +28,7 @@ namespace BanHang
         public void LoadGrid()
         {
             data = new dtKhachHang();
-            gridKhachHang.DataSource = data.LayDanhSachKhachHang(Session["IDKho"].ToString());
+            gridKhachHang.DataSource = data.LayDanhSachKhachHang();
             gridKhachHang.DataBind();
         }
 

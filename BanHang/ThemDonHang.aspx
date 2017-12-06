@@ -29,7 +29,7 @@
                         </dx:LayoutItemNestedControlContainer>
                     </LayoutItemNestedControlCollection>
                 </dx:LayoutItem>
-                <dx:LayoutItem Caption="Nhà Cung Cấp" ColSpan="2">
+                <dx:LayoutItem Caption="Nhà Cung Cấp">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
                             <dx:ASPxComboBox ID="cmbNhaCungCap" runat="server" AutoPostBack="True" DataSourceID="SqlNhaCungCap" OnSelectedIndexChanged="cmbNhaCungCap_SelectedIndexChanged" TextField="TenNhaCungCap" ValueField="ID" Width="100%">
@@ -50,9 +50,25 @@
                         </dx:LayoutItemNestedControlContainer>
                     </LayoutItemNestedControlCollection>
                 </dx:LayoutItem>
-                <dx:LayoutItem Caption="Ghi Chú" ColSpan="3">
+                <dx:LayoutItem Caption="Tổng Tiền">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
+                            <dx:ASPxSpinEdit ID="txtTongTien" runat="server" DisplayFormatString="N0" Enabled="False" Width="100%">
+                            </dx:ASPxSpinEdit>
+                        </dx:LayoutItemNestedControlContainer>
+                    </LayoutItemNestedControlCollection>
+                </dx:LayoutItem>
+                <dx:LayoutItem Caption="Trả Trước">
+                    <LayoutItemNestedControlCollection>
+                        <dx:LayoutItemNestedControlContainer runat="server">
+                            <dx:ASPxSpinEdit ID="txtTraTruoc" runat="server" OnInit="txtTraTruoc_Init" Width="100%">
+                            </dx:ASPxSpinEdit>
+                        </dx:LayoutItemNestedControlContainer>
+                    </LayoutItemNestedControlCollection>
+                </dx:LayoutItem>
+                <dx:LayoutItem Caption="Ghi Chú" ColSpan="2">
+                    <LayoutItemNestedControlCollection>
+                        <dx:LayoutItemNestedControlContainer runat="server">
                             <dx:ASPxTextBox ID="txtGhiChu" runat="server" Width="100%">
                             </dx:ASPxTextBox>
                         </dx:LayoutItemNestedControlContainer>
@@ -69,7 +85,7 @@
                            <dx:ASPxComboBox ID="txtBarcode" runat="server" ValueType="System.String" 
                                         DropDownWidth="600" DropDownStyle="DropDown" 
                                         ValueField="ID" 
-                                        NullText="Nhập Barcode hoặc mã hàng ......." Width="100%" TextFormatString="{0}"
+                                        NullText="Nhập tên hàng hóa..." Width="100%" TextFormatString="{0}"
                                         EnableCallbackMode="true" CallbackPageSize="10" 
                                         OnItemsRequestedByFilterCondition="txtBarcode_ItemsRequestedByFilterCondition"
                                         OnItemRequestedByValue="txtBarcode_ItemRequestedByValue" 

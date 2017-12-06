@@ -20,8 +20,6 @@ namespace BanHang
             data = new dtDanhSachNhapHang();
             gridDonDatHang.DataSource = data.LayDanhSachDonHang();
             gridDonDatHang.DataBind();
-
-           // dtLichSuTruyCap.ThemLichSu(Session["IDChiNhanh"].ToString(), Session["IDNhom"].ToString(), Session["IDNhanVien"].ToString(), "Danh sách phiếu nhập hàng", "Truy cập");
         }
     }
 }

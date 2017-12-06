@@ -39,52 +39,24 @@ namespace BanHang
             gridDanhSachHangHoa.DataSource = data.DanhSachDonDatHang_Temp(p);
             gridDanhSachHangHoa.DataBind();
         }
-        //public void CLear()
-        //{
-        //    txtBarcode.Text = "";
-        //    txtSoLuong.Text = "";
-        //}
-        //protected void btnThem_Temp_Click(object sender, EventArgs e)
-        //{
-        //    if (txtBarcode.Text != "")
-        //    {
-        //        int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
-        //        if (SoLuong > 0)
-        //        {
-        //            string IDHangHoa = txtBarcode.Value.ToString();
-        //            string MaHangHoa = dtHangHoa.LayMaHang(IDHangHoa);
-        //            string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
-        //            float DonGia = float.Parse(txtDonGia.Text);
-        //            string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
-        //            DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
-        //            if (db.Rows.Count == 0)
-        //            {
-        //                data = new dtThemDonHangKho();
-        //                data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia);
-        //                TinhTongTien();
-        //                CLear();
-        //            }
-        //            else
-        //            {
-        //                data = new dtThemDonHangKho();
-        //                data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
-        //                TinhTongTien();
-        //                CLear();
-        //            }
-        //            LoadGrid(IDDonHang);
-        //        }
-        //        else
-        //        {
-        //            Response.Write("<script language='JavaScript'> alert('Số Lượng phải > 0.'); </script>");
-        //            return;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Response.Write("<script language='JavaScript'> alert('Vui lòng chọn hàng hóa.'); </script>");
-        //        return;
-        //    }
-        //}
+        public double TinhTongTien()
+        {
+            string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
+            data = new dtThemDonHangKho();
+            DataTable dt = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
+            if (dt.Rows.Count > 0)
+            {
+                double TongTien = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    double ThanhTien = double.Parse(dr["ThanhTien"].ToString());
+                    TongTien = TongTien + ThanhTien;
+                }
+                return TongTien;
+            }
+            else
+                return 0;
+        }
         protected void btnThem_Click(object sender, EventArgs e)
         {
             if (cmbNhaCungCap.Text != "")
@@ -97,13 +69,7 @@ namespace BanHang
                     string SoDonHang = txtSoDonHang.Text.Trim();
                     string IDNguoiLap = Session["IDNhanVien"].ToString();
                     DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
-                    double TongTien1 = 0;
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        double ThanhTien = double.Parse(dr["ThanhTien"].ToString());
-                        TongTien1 = TongTien1 + ThanhTien;
-                    }
-                    string TongTien = TongTien1.ToString();
+                    string TongTien = TinhTongTien().ToString();
                     string IDChiNhanh = Session["IDKho"].ToString();
                     string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
                     string IDNhaCungCap = cmbNhaCungCap.Text == "" ? "" : cmbNhaCungCap.Value.ToString();
@@ -168,6 +134,7 @@ namespace BanHang
             data = new dtThemDonHangKho();
             data.XoaChiTietDonHang_Temp_ID(ID);
             LoadGrid(IDThuMuaDatHang);
+            txtTongTien.Text = TinhTongTien().ToString();
         }
 
         protected void txtNgayLap_Init(object sender, EventArgs e)
@@ -212,10 +179,12 @@ namespace BanHang
                         if (db.Rows.Count == 0)
                         {
                             data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
+                            txtTongTien.Text = TinhTongTien().ToString();
                         }
                         else
                         {
                             data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
+                            txtTongTien.Text = TinhTongTien().ToString();
                         }
                         LoadGrid(IDDonHang);
                     }
@@ -288,6 +257,11 @@ namespace BanHang
             }
             else
                 throw new Exception("Lỗi: Không được bỏ trống số lượng và giá mua !!!");
+        }
+
+        protected void txtTraTruoc_Init(object sender, EventArgs e)
+        {
+            txtTraTruoc.Text = "0";
         }
     }
 }
