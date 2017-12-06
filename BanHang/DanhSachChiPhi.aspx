@@ -53,7 +53,7 @@
             </Items>
         </EditFormLayoutProperties>
         <Columns>
-            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="8" Name="chucnang">
+            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="9" Name="chucnang">
             </dx:GridViewCommandColumn>
             <dx:GridViewDataDateColumn Caption="Ngày Cập Nhật" FieldName="NgayCapNhat" VisibleIndex="7">
                 <propertiesdateedit displayformatstring="dd/MM/yyyy" EditFormat="Custom" EditFormatString="dd/MM/yyyy"></propertiesdateedit>
@@ -93,6 +93,11 @@
                     </ValidationSettings>
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataButtonEditColumn Caption="Chức Năng" VisibleIndex="8">
+                <DataItemTemplate>
+                    <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
+                </DataItemTemplate>
+            </dx:GridViewDataButtonEditColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

@@ -61,8 +61,6 @@
          <Columns>
              <dx:GridViewDataTextColumn Caption="Số Đơn Hàng" FieldName="SoHoaDon" VisibleIndex="0">
              </dx:GridViewDataTextColumn>
-             <dx:GridViewDataTextColumn Caption="Hình Thức Thanh Toán" FieldName="HinhThucThanhToan" VisibleIndex="2">
-             </dx:GridViewDataTextColumn>
              <dx:GridViewDataTextColumn Caption="Nội Dung Thanh Toán" FieldName="NoiDung" VisibleIndex="4">
              </dx:GridViewDataTextColumn>
              <dx:GridViewDataDateColumn Caption="Ngày Thanh Toán" FieldName="NgayThanhToan" VisibleIndex="5">
@@ -77,7 +75,7 @@
                  <PropertiesComboBox DataSourceID="SqlNhaCungCap" TextField="TenNhaCungCap" ValueField="ID">
                  </PropertiesComboBox>
              </dx:GridViewDataComboBoxColumn>
-             <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="6">
+             <dx:GridViewDataButtonEditColumn Caption="Chức Năng" VisibleIndex="6">
                 <DataItemTemplate>
                     <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
                 </DataItemTemplate>
@@ -119,31 +117,6 @@
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
                         <dx:ASPxSpinEdit ID="txtNoHienTai" runat="server" Width="100%" DisplayFormatString="N0" Enabled="False">
                         </dx:ASPxSpinEdit>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Hình Thức Thanh Toán" ColSpan="2" RowSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                        <dx:ASPxComboBox ID="cmbHinhThucThanhToan" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbHinhThucThanhToan_SelectedIndexChanged" Width="100%" Enabled="False">
-                            <Items>
-                                <dx:ListEditItem Text="Công Nợ Giảm Dần" Value="0" />
-                                <dx:ListEditItem Text="Theo Phiếu Nhập Kho" Value="1" />
-                            </Items>
-                        </dx:ASPxComboBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Chọn Mã Phiếu" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer4" runat="server">
-                        <dx:ASPxComboBox ID="txtMaPhieu" runat="server" Width="100%" Enabled="False" ValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="txtMaPhieu_SelectedIndexChanged">
-                             <Columns>
-                                    <dx:ListBoxColumn Caption="Mã Phiếu" FieldName="SoDonHang" Width="120px" />
-                                    <dx:ListBoxColumn Caption="Tổng Tiền " FieldName="TongTien" Width="100px" />
-                                    <dx:ListBoxColumn Caption="Ngày lập phiếu" FieldName="NgayLap" Width="80px" />               
-                                </Columns>
-                        </dx:ASPxComboBox>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>

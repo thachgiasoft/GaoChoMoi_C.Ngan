@@ -79,7 +79,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public object ThemChiTietCongNo(string SoHoaDon, string IDNhaCungCap, string HinhThucThanhToan, string IDMaPhieu, float SoTienThanhToan, string NoiDung, DateTime NgayThanhToan)
+        public object ThemChiTietCongNo(string SoHoaDon, string IDNhaCungCap, string IDMaPhieu, float SoTienThanhToan, string NoiDung, DateTime NgayThanhToan)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -87,12 +87,11 @@ namespace BanHang.Data
                 {
                     object ID = null;
                     myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_ChiTietCongNo] ([SoHoaDon], [IDNhaCungCap], [HinhThucThanhToan], [IDMaPhieu], [SoTienThanhToan], [NoiDung], [NgayThanhToan], [NgayCapNhat],[TienBangChu]) OUTPUT INSERTED.ID VALUES (@SoHoaDon, @IDNhaCungCap, @HinhThucThanhToan, @IDMaPhieu, @SoTienThanhToan, @NoiDung, @NgayThanhToan, getdate(),@TienBangChu)";
+                    string cmdText = "INSERT INTO [GPM_ChiTietCongNo] ([SoHoaDon], [IDNhaCungCap], [IDMaPhieu], [SoTienThanhToan], [NoiDung], [NgayThanhToan], [NgayCapNhat],[TienBangChu]) OUTPUT INSERTED.ID VALUES (@SoHoaDon, @IDNhaCungCap, @IDMaPhieu, @SoTienThanhToan, @NoiDung, @NgayThanhToan, getdate(),@TienBangChu)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
                         myCommand.Parameters.AddWithValue("@SoHoaDon", SoHoaDon);
                         myCommand.Parameters.AddWithValue("@IDNhaCungCap", IDNhaCungCap);
-                        myCommand.Parameters.AddWithValue("@HinhThucThanhToan", HinhThucThanhToan);
                         myCommand.Parameters.AddWithValue("@IDMaPhieu", IDMaPhieu);
                         myCommand.Parameters.AddWithValue("@SoTienThanhToan", SoTienThanhToan);
                         myCommand.Parameters.AddWithValue("@NoiDung", NoiDung);
