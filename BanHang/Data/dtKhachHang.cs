@@ -223,7 +223,21 @@ namespace BanHang.Data
                 }
             }
         }
-
+        public DataTable LayDanhSachKhachHangBanHang()
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT * FROM [GPM_KHACHHANG] WHERE [GPM_KHACHHANG].DaXoa = 0 ORDER BY [ID] DESC";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
         public DataTable LayDanhSachKhachHang()
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

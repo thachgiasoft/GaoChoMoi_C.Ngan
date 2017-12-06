@@ -225,9 +225,18 @@ namespace BanHang
                 object SoLuong = gridChiTietHoaDon.GetRowValues(i, "SoLuong");
                 object DonGiaCu = gridChiTietHoaDon.GetRowValues(i, "DonGia");
                 ASPxSpinEdit spineditSoLuong = gridChiTietHoaDon.FindRowCellTemplateControl(i, (GridViewDataColumn)gridChiTietHoaDon.Columns["SoLuong"], "txtSoLuongChange") as ASPxSpinEdit;
-                ASPxSpinEdit spineditDonGia = gridChiTietHoaDon.FindRowCellTemplateControl(i, (GridViewDataColumn)gridChiTietHoaDon.Columns["DonGia"], "txtDonGia") as ASPxSpinEdit;
+                ASPxSpinEdit spineditDonGia;
+                object GiaMoi = 0;
                 object SoLuongMoi = spineditSoLuong.Value;
-                object GiaMoi = spineditDonGia.Value;
+                if (Session["IDNhom"].ToString() == "1")
+                {
+                    spineditDonGia = gridChiTietHoaDon.FindRowCellTemplateControl(i, (GridViewDataColumn)gridChiTietHoaDon.Columns["DonGia"], "txtDonGia") as ASPxSpinEdit;
+                    GiaMoi = spineditDonGia.Value;
+                }
+                else
+                {
+                    GiaMoi = DonGiaCu;
+                }
                 if (SoLuong != SoLuongMoi || DonGiaCu != GiaMoi)
                 {
                     int STT = Convert.ToInt32(gridChiTietHoaDon.GetRowValues(i, "STT"));
@@ -235,7 +244,7 @@ namespace BanHang
                     int SoLuongOld = exitHang.SoLuong;
                     double ThanhTienOld = exitHang.ThanhTien;
                     exitHang.SoLuong = Convert.ToInt32(SoLuongMoi);
-                    exitHang.DonGia = double.Parse(spineditDonGia.Value.ToString());
+                    exitHang.DonGia = double.Parse(GiaMoi.ToString());
                     exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.DonGia;
                     DanhSachHoaDon[MaHoaDon].TongTien += exitHang.ThanhTien - ThanhTienOld;
                     DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
@@ -414,7 +423,7 @@ namespace BanHang
         public void DanhSachKhachHang()
         {
             dtKhachHang dtkh = new dtKhachHang();
-            ccbKhachHang.DataSource = dtkh.LayDanhSachKhachHang();
+            ccbKhachHang.DataSource = dtkh.LayDanhSachKhachHangBanHang();
             ccbKhachHang.TextField = "TenKhachHang";
             ccbKhachHang.ValueField = "ID";
             ccbKhachHang.DataBind();

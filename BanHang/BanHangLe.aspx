@@ -245,7 +245,7 @@
                                 </dx:ASPxButton>                                
                             </td>
                             <td align="right" width="50%">
-                                 <dx:ASPxButton ID="ASPxButton2" runat="server" OnClick="ASPxButton1_Click" RenderMode="Link" Text="Thêm KH">
+                                 <dx:ASPxButton ID="ASPxButton2" runat="server" OnClick="ASPxButton1_Click" RenderMode="Link" Text="Thêm Khách Hàng">
                                      <Image IconID="actions_newemployee_32x32devav" ToolTip="Thêm khách hàng">
                                      </Image>
                                  </dx:ASPxButton>
