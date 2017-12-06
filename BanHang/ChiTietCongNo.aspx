@@ -97,7 +97,7 @@
      </asp:SqlDataSource>
       <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
          PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="700px"
-         Height="500px" FooterText="Thông tin chi tiết nhập kho"
+         Height="400px" FooterText="Thông tin chi tiết nhập kho"
         HeaderText="Thông tin cập nhật công nợ" ClientInstanceName="popup" EnableHierarchyRecreation="True">
 
        <ContentCollection>
@@ -123,7 +123,7 @@
             <dx:LayoutItem Caption="Số Tiền Thanh Toán" ColSpan="2">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0" Enabled="False">
+                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0">
                         </dx:ASPxSpinEdit>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -156,6 +156,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
                         <dx:ASPxButton ID="btnCapNhatThanhToan" runat="server" Text="Cập Nhật" OnClick="btnCapNhatThanhToan_Click" >
+                            <Image IconID="actions_apply_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -164,6 +166,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
                         <dx:ASPxButton ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click">
+                            <Image IconID="actions_cancel_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
