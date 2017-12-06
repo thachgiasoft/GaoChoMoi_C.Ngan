@@ -358,14 +358,14 @@ namespace BanHang
                     //}
 
                     double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
-                    double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachCanTra - DanhSachHoaDon[MaHoaDon].KhachThanhToan;//
-                    double CongNoMoi = 0;
-                    if (DanhSachHoaDon[MaHoaDon].KhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+                    double TongTienKhachHang = double.Parse(txtKhachCanTra.Text.ToString()) - double.Parse(txtKhachThanhToan.Text.ToString());//
+                    double CongNoMoi = CongNoCu;
+                    if (double.Parse(txtKhachThanhToan.Text.ToString()) < double.Parse(txtKhachCanTra.Text.ToString()))
                     {
                         //có nợ mới
                         CongNoMoi = CongNoCu + TongTienKhachHang;
                     }
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon],"0", (TongTienKhachHang).ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], "0", TongTienKhachHang < 0 ? "0" : TongTienKhachHang.ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 0;
