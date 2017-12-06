@@ -147,102 +147,7 @@ namespace BanHang
             {
                 ckThanhToan.Enabled = true;
             }
-        }
-        protected void btnInsertHang_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                dtBanHangLe dt = new dtBanHangLe();
-                if (txtBarcode.Text.Trim() != "")
-                {
-                    DataTable tbThongTin;
-                    if (txtBarcode.Value == null)
-                    {
-                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Text.ToString(), Session["IDKho"].ToString());
-                    }
-                    else
-                    {
-                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString(), Session["IDKho"].ToString());
-                    }
-
-                    if (tbThongTin.Rows.Count > 0)
-                    {
-                        string IDKho = Session["IDKho"].ToString();
-                        string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
-                        string IDHangHoa = tbThongTin.Rows[0]["ID"].ToString();
-                        string MaHangHoa = tbThongTin.Rows[0]["MaHang"].ToString();
-                        string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
-                        string HinhAnh = tbThongTin.Rows[0]["HinhAnh"].ToString();
-                        int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
-                        double DonGia = double.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
-                        DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
-                        if (db.Rows.Count == 0)
-                        {
-                            data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
-                            txtTongTien.Text = TinhTongTien().ToString();
-                        }
-                        else
-                        {
-                            data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
-                            txtTongTien.Text = TinhTongTien().ToString();
-                        }
-                        LoadGrid(IDDonHang);
-                    }
-                    else
-                    {
-                        txtBarcode.Focus();
-                        Response.Write("<script language='JavaScript'> alert('Mã hàng không tồn tại !!!'); </script>");
-                    }
-                }
-                txtBarcode.Focus();
-                txtBarcode.Text = "";
-                txtBarcode.Value = "";
-                txtSoLuong.Text = "1";
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script language='JavaScript'> alert('Error: " + ex + "'); </script>");
-            }
-        }
-
-        protected void txtBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
-        {
-            long value = 0;
-            if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
-                return;
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaMua, GPM_DonViTinh.TenDonViTinh 
-                                        FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
-                                                           INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
-                                        WHERE (GPM_HangHoa.ID = @ID) ORDER BY GPM_HangHoa.TenHangHoa ASC";
-            dsHangHoa.SelectParameters.Clear();
-            dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
-            comboBox.DataSource = dsHangHoa;
-            comboBox.DataBind();
-        }
-
-        protected void txtBarcode_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
-        {
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT [ID], [MaHang], [TenHangHoa], [GiaMua] , [TenDonViTinh],[HinhAnh]
-                                        FROM (
-	                                        select GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaMua, GPM_DonViTinh.TenDonViTinh, 
-	                                        row_number()over(order by GPM_HangHoa.MaHang) as [rn] 
-	                                        FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
-                                                               INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID
-	                                        WHERE ((GPM_HangHoa.MaHang LIKE @MaHang) OR GPM_HangHoa.TenHangHoa LIKE @TenHang)  AND (GPM_HangHoaTonKho.IDKho = @IDKho) AND (GPM_HangHoaTonKho.DaXoa = 0)	
-	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenHangHoa ASC";
-            dsHangHoa.SelectParameters.Clear();
-            dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsHangHoa.SelectParameters.Add("IDKho", TypeCode.Int32, Session["IDKho"].ToString());
-            dsHangHoa.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
-            dsHangHoa.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
-            comboBox.DataSource = dsHangHoa;
-            comboBox.DataBind();
-        }
-
+        } 
         protected void gridDanhSachHangHoa_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             if (e.NewValues["SoLuong"] != null && e.NewValues["DonGia"] != null)
@@ -262,6 +167,45 @@ namespace BanHang
         protected void txtTraTruoc_Init(object sender, EventArgs e)
         {
             txtTraTruoc.Text = "0";
+        }
+
+        protected void txtTongTien_Init(object sender, EventArgs e)
+        {
+            txtTongTien.Text = "0";
+        }
+
+        protected void btnThemTam_Click(object sender, EventArgs e)
+        {
+            dtBanHangLe dt = new dtBanHangLe();
+            DataTable tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString(), Session["IDKho"].ToString());
+            if (tbThongTin.Rows.Count > 0)
+            {
+                string IDKho = Session["IDKho"].ToString();
+                string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
+                string IDHangHoa = tbThongTin.Rows[0]["ID"].ToString();
+                string MaHangHoa = tbThongTin.Rows[0]["MaHang"].ToString();
+                string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
+                string HinhAnh = tbThongTin.Rows[0]["HinhAnh"].ToString();
+                int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
+                double DonGia = double.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
+                DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
+                if (db.Rows.Count == 0)
+                {
+                    data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
+                    txtTongTien.Text = TinhTongTien().ToString();
+                }
+                else
+                {
+                    data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
+                    txtTongTien.Text = TinhTongTien().ToString();
+                }
+                LoadGrid(IDDonHang);
+            }
+            else
+            {
+                txtBarcode.Focus();
+                Response.Write("<script language='JavaScript'> alert('Mã hàng không tồn tại !!!'); </script>");
+            }
         }
     }
 }
