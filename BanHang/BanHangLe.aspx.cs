@@ -384,19 +384,18 @@ namespace BanHang
             cmbNhomKhachHang.Text = "";
             txtSoDienThoai.Text = "";
             txtDiaChi.Text = "";
-            cmbChietKhau.Text = "";
             popupThemKhachHang.ShowOnPageLoad = true;
         }
 
         protected void btnThemKhachHang_Click(object sender, EventArgs e)
         {
-            if (cmbNhomKhachHang.Text != "" && txtTenKhachHang.Text != "" && cmbChietKhau.Text !="")
+            if (cmbNhomKhachHang.Text != "" && txtTenKhachHang.Text != "")
             {
                 int IDNhom = Int32.Parse(cmbNhomKhachHang.Value.ToString());
                 string TenKH = txtTenKhachHang.Text;
                 string SDT = txtSoDienThoai.Text == null ? "" : txtSoDienThoai.Text;
                 string DC = txtDiaChi.Text == null ? "" : txtDiaChi.Text;
-                string IDChietKhau = cmbChietKhau.Value.ToString();
+                string IDChietKhau = "2";
                 dtKhachHang dtkh = new dtKhachHang();
                 string MaKh = "";
                 string Barcode = "";
@@ -411,7 +410,6 @@ namespace BanHang
                 cmbNhomKhachHang.Text = "";
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
-                cmbChietKhau.Text = "";
                 HienThiThongBao("Thêm khách hàng thành công !!");
                 popupThemKhachHang.ShowOnPageLoad = false; return;
             }

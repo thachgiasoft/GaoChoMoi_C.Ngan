@@ -526,24 +526,6 @@ namespace BanHang {
         protected global::DevExpress.Web.ASPxTextBox txtTenKhachHang;
         
         /// <summary>
-        /// cmbChietKhau control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox cmbChietKhau;
-        
-        /// <summary>
-        /// SqlChietKhau control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlChietKhau;
-        
-        /// <summary>
         /// LayoutItemNestedControlContainer9 control.
         /// </summary>
         /// <remarks>
