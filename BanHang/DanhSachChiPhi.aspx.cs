@@ -45,7 +45,7 @@ namespace BanHang
             string TenKhachHang = e.NewValues["TenKhachHang"].ToString();
             DateTime NgayChi = DateTime.Parse(e.NewValues["NgayChi"].ToString());
             double TongChi = double.Parse(e.NewValues["TongChi"].ToString());
-            double DaChi = double.Parse(e.NewValues["DaChi"].ToString());
+            double DaChi = TongChi;
             double ConLai = TongChi - DaChi;
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
             string TrangThai = e.NewValues["TrangThai"].ToString();
@@ -62,7 +62,7 @@ namespace BanHang
             string TenKhachHang = e.NewValues["TenKhachHang"].ToString();
             DateTime NgayChi = DateTime.Parse(e.NewValues["NgayChi"].ToString());
             double TongChi = double.Parse(e.NewValues["TongChi"].ToString());
-            double DaChi = double.Parse(e.NewValues["DaChi"].ToString());
+            double DaChi = TongChi;
             double ConLai = TongChi - DaChi;
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
             string TrangThai = e.NewValues["TrangThai"].ToString();
