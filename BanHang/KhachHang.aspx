@@ -188,35 +188,10 @@
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
-            <dx:LayoutItem Caption="Hình Thức Thanh Toán" ColSpan="2" RowSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                        <dx:ASPxComboBox ID="cmbHinhThucThanhToan" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbHinhThucThanhToan_SelectedIndexChanged" Width="100%" Enabled="False">
-                            <Items>
-                                <dx:ListEditItem Text="Công Nợ Giảm Dần" Value="0" />
-                                <dx:ListEditItem Text="Theo Phiếu Giao Hàng" Value="1" />
-                            </Items>
-                        </dx:ASPxComboBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Chọn Mã Phiếu" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">
-                        <dx:ASPxComboBox ID="txtMaPhieu" runat="server" Width="100%" Enabled="False" ValueField="ID" AutoPostBack="True" TextFormatString="{0}" OnSelectedIndexChanged="txtMaPhieu_SelectedIndexChanged">
-                             <Columns>
-                                    <dx:ListBoxColumn Caption="Mã Phiếu" FieldName="MaHoaDon" Width="120px" />
-                                    <dx:ListBoxColumn Caption="Tổng Tiền " FieldName="TongTien" Width="100px" />
-                                    <dx:ListBoxColumn Caption="Ngày lập phiếu" FieldName="NgayBan" Width="120px" />               
-                                </Columns>
-                        </dx:ASPxComboBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
             <dx:LayoutItem Caption="Số Tiền Thanh Toán" ColSpan="2">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
-                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0" Enabled="False">
+                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0">
                         </dx:ASPxSpinEdit>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -249,6 +224,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer11" runat="server">
                         <dx:ASPxButton ID="btnCapNhatThanhToan" runat="server" Text="Cập Nhật" OnClick="btnCapNhatThanhToan_Click" >
+                            <Image IconID="actions_apply_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -257,6 +234,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer12" runat="server">
                         <dx:ASPxButton ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click">
+                            <Image IconID="actions_cancel_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>

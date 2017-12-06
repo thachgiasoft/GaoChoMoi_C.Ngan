@@ -135,22 +135,12 @@ namespace BanHang
         {
             if (cmbKhachHang.Text != "")
             {
-                cmbHinhThucThanhToan.Enabled = true;
-                txtMaPhieu.Text = "";
                 txtTienThanhToan.Text = "";
                 txtNhapSoHoaDon.Enabled = true;
-                MaPhieu();
                 txtNoHienTai.Text = dtKhachHang.LayCongNoCuKhachHang(cmbKhachHang.Value.ToString()).ToString();
             }
         }
-        public void MaPhieu()
-        {
-            data = new dtKhachHang();
-            txtMaPhieu.DataSource = data.DanhSachSoDonHang(cmbKhachHang.Value.ToString());
-            txtMaPhieu.TextField = "MaHoaDon";
-            txtMaPhieu.ValueField = "ID";
-            txtMaPhieu.DataBind();
-        }
+        
         protected void btnCongNo_Click(object sender, EventArgs e)
         {
             Clear();
@@ -160,8 +150,6 @@ namespace BanHang
         {
             cmbKhachHang.Text = "";
             txtNoHienTai.Text = "";
-            cmbHinhThucThanhToan.Text = "";
-            txtMaPhieu.Text = "";
             txtTienThanhToan.Text = "";
             txtNhapSoHoaDon.Text = "";
             txtNoiDung.Text = "";
@@ -170,8 +158,6 @@ namespace BanHang
         protected void btnHuy_Click(object sender, EventArgs e)
         {
             Clear();
-            cmbHinhThucThanhToan.Enabled = false;
-            txtMaPhieu.Enabled = false;
             txtTienThanhToan.Enabled = false;
             txtNhapSoHoaDon.Enabled = false;
             popup.ShowOnPageLoad = false;
@@ -179,67 +165,41 @@ namespace BanHang
 
         protected void btnCapNhatThanhToan_Click(object sender, EventArgs e)
         {
-            if (cmbKhachHang.Text != "" && cmbHinhThucThanhToan.Text != "" && txtTienThanhToan.Text != "")
+            if (cmbKhachHang.Text != "" && txtTienThanhToan.Text != "")
             {
                 data = new dtKhachHang();
-                int KT = Int32.Parse(cmbHinhThucThanhToan.Value.ToString());
                 string IDKhachHang = cmbKhachHang.Value.ToString();
-                string HinhThucThanhToan = cmbHinhThucThanhToan.Text.ToString();
                 string SoHoaDon = txtNhapSoHoaDon.Text == null ? "" : txtNhapSoHoaDon.Text;
                 double SoTienThanhToan = double.Parse(txtTienThanhToan.Text);
                 string NoiDung = txtNoiDung.Text == null ? "" : txtNoiDung.Text;
                 DateTime NgayThanhToan = DateTime.Parse(dateNgayThanhToan.Text);
-                if (KT == 0)
+                object ID = data.ThemChiTietCongNo(SoHoaDon, IDKhachHang, "", "", SoTienThanhToan, NoiDung, NgayThanhToan);
+                if (ID != null)
                 {
-                    if (double.Parse(txtNoHienTai.Text.ToString()) < double.Parse(txtTienThanhToan.Text.ToString()))
+                    data.CapNhatCongNo(IDKhachHang, SoTienThanhToan);
+                    DataTable db = data.DanhSachSoDonHang(IDKhachHang);
+                    if (db.Rows.Count != 0)
                     {
-                        txtTienThanhToan.Text = "";
-                        txtTienThanhToan.Focus();
-                        Response.Write("<script language='JavaScript'> alert('Số tiền trả vượt quá số tiền nợ.'); </script>");
-                    }
-                    else
-                    {
-
-                        object ID = data.ThemChiTietCongNo(SoHoaDon, IDKhachHang, HinhThucThanhToan, "", SoTienThanhToan, NoiDung, NgayThanhToan);
-                        if (ID != null)
+                        foreach (DataRow dr in db.Rows)
                         {
-                            data.CapNhatCongNo(IDKhachHang, SoTienThanhToan);
-                            DataTable db = data.DanhSachSoDonHang(IDKhachHang);
-                            if (db.Rows.Count != 0)
+                            float TienMaPhieu = float.Parse(dr["TongTien"].ToString());
+                            string IDHoaDon = dr["ID"].ToString();
+                            if (SoTienThanhToan > TienMaPhieu)
                             {
-                                foreach (DataRow dr in db.Rows)
-                                {
-                                    float TienMaPhieu = float.Parse(dr["TongTien"].ToString());
-                                    string IDHoaDon = dr["ID"].ToString();
-                                    if (SoTienThanhToan > TienMaPhieu)
-                                    {
-                                        data = new dtKhachHang();
-                                        data.CapNhatTinhTrang(IDHoaDon);
-                                        SoTienThanhToan = SoTienThanhToan - TienMaPhieu;
-                                    }
-                                    else if (SoTienThanhToan > 0)
-                                    {
-                                        data = new dtKhachHang();
-                                        data.CapNhatTinhTrang(IDHoaDon);
-                                        SoTienThanhToan = 0;
-                                    }
-                                    Response.Redirect("ChiTietCongNoKhachHang.aspx");
-                                }
+                                data = new dtKhachHang();
+                                data.CapNhatTinhTrang(IDHoaDon);
+                                SoTienThanhToan = SoTienThanhToan - TienMaPhieu;
+                            }
+                            else if (SoTienThanhToan > 0)
+                            {
+                                data = new dtKhachHang();
+                                data.CapNhatTinhTrang(IDHoaDon);
+                                SoTienThanhToan = 0;
                             }
                             Response.Redirect("ChiTietCongNoKhachHang.aspx");
                         }
                     }
-                }
-                if (KT == 1)
-                {
-                    string IDMaPhieu = txtMaPhieu.Value.ToString();
-                    object ID = data.ThemChiTietCongNo(SoHoaDon, IDKhachHang, HinhThucThanhToan, IDMaPhieu, SoTienThanhToan, NoiDung, NgayThanhToan);
-                    if (ID != null)
-                    {
-                        data.CapNhatCongNo(IDKhachHang, SoTienThanhToan);
-                        data.CapNhatTinhTrang(IDMaPhieu);
-                        Response.Redirect("ChiTietCongNoKhachHang.aspx");
-                    }
+                    Response.Redirect("ChiTietCongNoKhachHang.aspx");
                 }
             }
             else
@@ -250,37 +210,6 @@ namespace BanHang
            // dtLichSuTruyCap.ThemLichSu(Session["IDChiNhanh"].ToString(), Session["IDNhom"].ToString(), Session["IDNhanVien"].ToString(), "Cập nhật công nợ nhà cung cấp", "Thanh toán công nợ.");
         
         }
-
-        protected void cmbHinhThucThanhToan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbHinhThucThanhToan.Text != "")
-            {
-                int KT = Int32.Parse(cmbHinhThucThanhToan.Value.ToString());
-                if (KT == 0)
-                {
-                    txtMaPhieu.Enabled = false;
-                    txtMaPhieu.Text = "";
-                    txtTienThanhToan.Enabled = true;
-                    txtTienThanhToan.Text = "";
-                }
-                if (KT == 1)
-                {
-                    txtMaPhieu.Enabled = true;
-                    txtTienThanhToan.Enabled = false;
-                    MaPhieu();
-                }
-            }
-        }
-
-        protected void txtMaPhieu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (txtMaPhieu.Text != "")
-            {
-                MaPhieu();
-                txtTienThanhToan.Text = dtKhachHang.LayTienThanhToan_IDHoaDon(txtMaPhieu.Value.ToString()) + "";
-            }
-        }
-
         protected void dateNgayThanhToan_Init(object sender, EventArgs e)
         {
             dateNgayThanhToan.Date = DateTime.Now;
