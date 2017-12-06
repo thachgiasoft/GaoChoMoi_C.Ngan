@@ -31,15 +31,6 @@ namespace BanHang {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
         
         /// <summary>
-        /// btnChietKhau control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnChietKhau;
-        
-        /// <summary>
         /// LayoutItemNestedControlContainer2 control.
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace BanHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton btnCongNo;
-        
-        /// <summary>
-        /// btnThanhToanChietKhau control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnThanhToanChietKhau;
         
         /// <summary>
         /// btnThanhToanCongNo control.

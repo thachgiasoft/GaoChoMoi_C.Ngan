@@ -191,7 +191,7 @@
                 </div>
             </ExpandBarTemplate>
         </dx:ASPxPanel>
-        <dx:ASPxLabel ID="lblChao" style="float:right; padding:5px;" runat="server"></dx:ASPxLabel> 
+       
         <dx:ASPxPanel ID="MainPane" runat="server" CssClass="mainContentPane">
             <PanelCollection>
                 <dx:PanelContent ID="PanelContent2" runat="server" SupportsDisabledAttribute="True">
@@ -210,6 +210,7 @@
                         <div style="text-align:center; padding:5px;">
                             <dx:ASPxLabel ID="ASPxLabel2" runat="server">
                             </dx:ASPxLabel> 
+                             <dx:ASPxLabel ID="lblChao" style="float:right; padding:5px;" runat="server"></dx:ASPxLabel> 
                         </div>
                 </dx:PanelContent>
             </PanelCollection>
