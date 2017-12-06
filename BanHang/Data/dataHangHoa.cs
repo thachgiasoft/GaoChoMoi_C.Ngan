@@ -253,88 +253,9 @@ namespace BanHang.Data
                 }
             }
         }
-        public void XoaBarCode(int ID)
-        {
-            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
-            {
-                try
-                {
-                    myConnection.Open();
-                    string cmdText = "DELETE FROM [GPM_HangHoa_Barcode] WHERE [ID] = @ID";
-                    using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
-                    {
-                        myCommand.Parameters.AddWithValue("@ID", ID);
-                        myCommand.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Lỗi: Quá trình cập nhật dữ liệu gặp lỗi, hãy tải lại trang");
-                }
-            }
-        }
-        public void ThemBarCode(object IDHangHoa, string BarCode)
-        {
-            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
-            {
-                try
-                {
-                    myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_HangHoa_Barcode] ([IDHangHoa],[Barcode],[NgayCapNhat])" +
-                             " VALUES(@IDHangHoa, @BarCode, getdate())";
-                    using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
-                    {
-                        myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
-                        myCommand.Parameters.AddWithValue("@BarCode", BarCode);
-                        myCommand.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Lỗi: Quá trình cập nhật dữ liệu gặp lỗi, hãy tải lại trang");
-                }
-            }
-        }
-        public void CapNhatBarCode(int ID, object IDHangHoa, string BarCode)
-        {
-            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
-            {
-                try
-                {
-                    myConnection.Open();
-                    string cmdText = "UPDATE [GPM_HangHoa_Barcode] SET [IDHangHoa] = @IDHangHoa, [BarCode] = @BarCode,[NgayCapNhat] = getdate() WHERE [ID] = @ID";
-                    using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
-                    {
-                        myCommand.Parameters.AddWithValue("@ID", ID);
-                        myCommand.Parameters.AddWithValue("@BarCode", BarCode);
-                        myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
-                        myCommand.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Lỗi: Quá trình cập nhật dữ liệu gặp lỗi, hãy tải lại trang");
-                }
-            }
-        }
-        public DataTable GetListBarCode(object ID)
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
-            {
-                con.Open();
-                string cmdText = "SELECT [ID], [Barcode], [NgayCapNhat] FROM [GPM_HangHoa_Barcode] WHERE [IDHangHoa] = @IDHangHoa";
-                using (SqlCommand command = new SqlCommand(cmdText, con))
-                {
-                    command.Parameters.AddWithValue("@IDHangHoa", ID);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        dt.Load(reader);
-                    }
-                }
-            }
-            return dt;
-        }
+        
+        
+        
         public void XoaHangHoa(string ID)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))

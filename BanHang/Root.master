@@ -57,7 +57,7 @@
                                                     <dx:RibbonDropDownButtonItem Name="danh-muc" NavigateUrl="javascript:void(2)" 
                                                         Size="Large" Text="Danh Mục">
                                                         <Items>
-                                                            <dx:RibbonDropDownButtonItem Name="Chiết Khấu" NavigateUrl="ChietKhau.aspx" Text="Chiết Khấu">
+                                                            <dx:RibbonDropDownButtonItem Name="Chiết Khấu" NavigateUrl="ChietKhau.aspx" Text="Chiết Khấu" Visible="False">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="nhom-khach-hang" NavigateUrl="NhomKhachHang.aspx" Text="Nhóm Khách Hàng">
                                                             </dx:RibbonDropDownButtonItem>
@@ -74,6 +74,8 @@
                                                             <dx:RibbonDropDownButtonItem Name="nhom-hang" NavigateUrl="NhomHang.aspx" Text="Nhóm Hàng">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="danh-sach-hang-hoa" NavigateUrl="DanhSachHangHoa.aspx" Text="Hàng Hóa">
+                                                            </dx:RibbonDropDownButtonItem>
+                                                            <dx:RibbonDropDownButtonItem Name="Chi Phí" NavigateUrl="DanhSachChiPhi.aspx" Text="Chi Phí">
                                                             </dx:RibbonDropDownButtonItem>
                                                         </Items>
                                                         <LargeImage Url="~/image/danhsach.png">
