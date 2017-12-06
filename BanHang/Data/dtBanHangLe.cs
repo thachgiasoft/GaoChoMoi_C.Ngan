@@ -173,7 +173,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public DataTable LayThongTinHangHoa(string Barcode, string IDKho)
+        public DataTable LayThongTinHangHoa(string Barcode)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -184,11 +184,10 @@ namespace BanHang.Data
                                  "INNER JOIN GPM_HangHoaTonKho AS HHTK ON HH.ID = HHTK.IDHangHoa " +
                                  "INNER JOIN GPM_DonViTinh as DVi ON HH.IDDonViTinh = DVi.ID " +
                                  "LEFT OUTER JOIN GPM_HangHoa_Barcode AS BC ON HHTK.IDHangHoa = BC.IDHangHoa " +
-                                 "WHERE (BC.Barcode = @Barcode OR CONVERT(NVARCHAR(250), HHTK.IDHangHoa) = @Barcode) AND HHTK.IDKho = @IDKho AND HHTK.DaXoa = 0";
+                                 "WHERE (HHTK.IDHangHoa = @Barcode) AND HHTK.DaXoa = 0";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 {
                     command.Parameters.AddWithValue("@Barcode", Barcode);
-                    command.Parameters.AddWithValue("@IDKho", IDKho);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         DataTable tb = new DataTable();
@@ -197,6 +196,28 @@ namespace BanHang.Data
                     }
                 }
             }
+            //using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            //{
+            //    con.Open();
+            //    string cmdText = "";
+            //    cmdText = "SELECT HH.ID, HH.TenHangHoa,HH.MaHang, Dvi.TenDonViTinh, HH.GiaMua, HH.GiaSi, HH.GiaLe, HH.HinhAnh " +
+            //                     "FROM GPM_HangHoa AS HH " +
+            //                     "INNER JOIN GPM_HangHoaTonKho AS HHTK ON HH.ID = HHTK.IDHangHoa " +
+            //                     "INNER JOIN GPM_DonViTinh as DVi ON HH.IDDonViTinh = DVi.ID " +
+            //                     "LEFT OUTER JOIN GPM_HangHoa_Barcode AS BC ON HHTK.IDHangHoa = BC.IDHangHoa " +
+            //                     "WHERE (BC.Barcode = @Barcode OR CONVERT(NVARCHAR(250), HHTK.IDHangHoa) = @Barcode) AND HHTK.IDKho = @IDKho AND HHTK.DaXoa = 0";
+            //    using (SqlCommand command = new SqlCommand(cmdText, con))
+            //    {
+            //        command.Parameters.AddWithValue("@Barcode", Barcode);
+            //        command.Parameters.AddWithValue("@IDKho", IDKho);
+            //        using (SqlDataReader reader = command.ExecuteReader())
+            //        {
+            //            DataTable tb = new DataTable();
+            //            tb.Load(reader);
+            //            return tb;
+            //        }
+            //    }
+            //}
             //using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             //{
             //    con.Open();

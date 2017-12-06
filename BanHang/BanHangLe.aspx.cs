@@ -181,11 +181,11 @@ namespace BanHang
                     DataTable tbThongTin;
                     if (txtBarcode.Value == null)
                     {
-                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Text.ToString(), Session["IDKho"].ToString());
+                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Text.ToString());
                     }
                     else
                     {
-                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString(), Session["IDKho"].ToString());
+                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString());
                     }
 
                     if (tbThongTin.Rows.Count > 0)

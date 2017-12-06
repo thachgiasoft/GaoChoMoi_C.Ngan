@@ -32,21 +32,13 @@
                 <dx:LayoutItem Caption="Nhà Cung Cấp">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                            <dx:ASPxComboBox ID="cmbNhaCungCap" runat="server" AutoPostBack="True" DataSourceID="SqlNhaCungCap" OnSelectedIndexChanged="cmbNhaCungCap_SelectedIndexChanged" TextField="TenNhaCungCap" ValueField="ID" Width="100%">
+                            <dx:ASPxComboBox ID="cmbNhaCungCap" runat="server" DataSourceID="SqlNhaCungCap" TextField="TenNhaCungCap" ValueField="ID" Width="100%">
                             </dx:ASPxComboBox>
                             <asp:SqlDataSource ID="SqlNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenNhaCungCap] FROM [GPM_NhaCungCap] WHERE ([DaXoa] = @DaXoa)">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                                 </SelectParameters>
                             </asp:SqlDataSource>
-                        </dx:LayoutItemNestedControlContainer>
-                    </LayoutItemNestedControlCollection>
-                </dx:LayoutItem>
-                <dx:LayoutItem Caption="Đã Thanh Toán">
-                    <LayoutItemNestedControlCollection>
-                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                            <dx:ASPxCheckBox ID="ckThanhToan" runat="server" CheckState="Unchecked" Enabled="False">
-                            </dx:ASPxCheckBox>
                         </dx:LayoutItemNestedControlContainer>
                     </LayoutItemNestedControlCollection>
                 </dx:LayoutItem>
@@ -61,12 +53,12 @@
                 <dx:LayoutItem Caption="Trả Trước">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer runat="server">
-                            <dx:ASPxSpinEdit ID="txtTraTruoc" runat="server" OnInit="txtTraTruoc_Init" Width="100%">
+                            <dx:ASPxSpinEdit ID="txtTraTruoc" runat="server" OnInit="txtTraTruoc_Init" Width="100%" DisplayFormatString="N0">
                             </dx:ASPxSpinEdit>
                         </dx:LayoutItemNestedControlContainer>
                     </LayoutItemNestedControlCollection>
                 </dx:LayoutItem>
-                <dx:LayoutItem Caption="Ghi Chú" ColSpan="2">
+                <dx:LayoutItem Caption="Ghi Chú" ColSpan="3">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer runat="server">
                             <dx:ASPxTextBox ID="txtGhiChu" runat="server" Width="100%">

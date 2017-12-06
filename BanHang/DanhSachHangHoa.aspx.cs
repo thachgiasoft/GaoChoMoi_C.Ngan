@@ -62,6 +62,17 @@ namespace BanHang
                 e.NewValues["HinhAnh"] = Session["UploadImages"];
                 string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
                 object IDHangHoa = data.ThemHangHoa(IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaSi, GhiChu, HinhAnh, GiaLe);
+                if (IDHangHoa != null)
+                {
+                    //thêm tồn kho
+                    DataTable dta = data.LayDanhSachCuaHang();
+                    for (int i = 0; i < dta.Rows.Count; i++)
+                    {
+                        DataRow dr = dta.Rows[i];
+                        int IDKho = Int32.Parse(dr["ID"].ToString());
+                        data.ThemHangVaoTonKho(IDKho, (int)IDHangHoa, 0);
+                    }
+                }
                 e.Cancel = true;
                 gridHangHoa.CancelEdit();
                 LoadGrid(cmbSoLuongXem.Value.ToString());

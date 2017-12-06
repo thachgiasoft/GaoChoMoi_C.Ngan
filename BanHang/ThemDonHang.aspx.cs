@@ -59,64 +59,72 @@ namespace BanHang
         }
         protected void btnThem_Click(object sender, EventArgs e)
         {
-            if (cmbNhaCungCap.Text != "")
+            if (cmbNhaCungCap.Text != "" && txtTraTruoc.Text != "")
             {
-                string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
-                data = new dtThemDonHangKho();
-                DataTable dt = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
-                if (dt.Rows.Count != 0)
+                double TraTruoc = double.Parse(txtTraTruoc.Text.ToString());
+                double TongTien = TinhTongTien();
+                if (TraTruoc > TongTien)
                 {
-                    string SoDonHang = txtSoDonHang.Text.Trim();
-                    string IDNguoiLap = Session["IDNhanVien"].ToString();
-                    DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
-                    string TongTien = TinhTongTien().ToString();
-                    string IDChiNhanh = Session["IDKho"].ToString();
-                    string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
-                    string IDNhaCungCap = cmbNhaCungCap.Text == "" ? "" : cmbNhaCungCap.Value.ToString();
-                    int TrangThai = 0;
-                    if (ckThanhToan.Checked == true)
-                    {
-                        TrangThai = 1;
-                    }
-                    if (cmbNhaCungCap.Text != "" && ckThanhToan.Checked == false)
-                    {
-                        data = new dtThemDonHangKho();
-                        data.CongCongNoNCC(IDNhaCungCap, TongTien);
-
-                    }
-                    data = new dtThemDonHangKho();
-                    object ID = data.ThemPhieuDatHang();
-                    if (ID != null)
-                    {
-                        data.CapNhatDonDatHang(ID, SoDonHang, IDNguoiLap, NgayLap, TongTien, GhiChu, IDNhaCungCap, TrangThai);
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            string IDHangHoa = dr["IDHangHoa"].ToString();
-                            string MaHangHoa = dr["MaHangHoa"].ToString();
-                            string IDDonViTinh = dr["IDDonViTinh"].ToString();
-                            string SoLuong = dr["SoLuong"].ToString();
-                            string DonGia = dr["DonGia"].ToString();
-                            string ThanhTien = dr["ThanhTien"].ToString();
-                            data = new dtThemDonHangKho();
-                            dtCapNhatTonKho.CongTonKho(IDHangHoa, SoLuong, IDChiNhanh); // cộng kho không qua bước duyệt
-                            // ghi lịch sử
-                            data.ThemChiTietDonHang(ID, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, ThanhTien);
-                        }
-                        data = new dtThemDonHangKho();
-                        data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
-                        Response.Redirect("DanhSachPhieuDatHang.aspx");
-                    }
+                    Response.Write("<script language='JavaScript'> alert('Trả trước không lớn hơn tổng tiền.'); </script>");
                 }
                 else
                 {
-                    txtBarcode.Focus();
-                    Response.Write("<script language='JavaScript'> alert('Danh sách nguyên liệu rỗng.'); </script>");
+                    string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
+                    data = new dtThemDonHangKho();
+                    DataTable dt = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
+                    if (dt.Rows.Count != 0)
+                    {
+                        string SoDonHang = txtSoDonHang.Text.Trim();
+                        string IDNguoiLap = Session["IDNhanVien"].ToString();
+                        DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
+                        string IDChiNhanh = Session["IDKho"].ToString();
+                        string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
+                        string IDNhaCungCap = cmbNhaCungCap.Value.ToString();
+                        double ConLai = TongTien - TraTruoc;
+                        int TrangThai = 0;
+                        if (ConLai == 0)
+                        {
+                            TrangThai = 1;
+                        }
+                        if (IDNhaCungCap != "1")
+                        {
+                            data = new dtThemDonHangKho();
+                            data.CongCongNoNCC(IDNhaCungCap, ConLai.ToString());
+                        }
+                        data = new dtThemDonHangKho();
+                        object ID = data.ThemPhieuDatHang();
+                        if (ID != null)
+                        {
+                            data.CapNhatDonDatHang(ID, SoDonHang, IDNguoiLap, NgayLap, TongTien.ToString(), GhiChu, IDNhaCungCap, TrangThai, TraTruoc, ConLai);
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                string IDHangHoa = dr["IDHangHoa"].ToString();
+                                string MaHangHoa = dr["MaHangHoa"].ToString();
+                                string IDDonViTinh = dr["IDDonViTinh"].ToString();
+                                string SoLuong = dr["SoLuong"].ToString();
+                                string DonGia = dr["DonGia"].ToString();
+                                string ThanhTien = dr["ThanhTien"].ToString();
+                                data = new dtThemDonHangKho();
+                                dtCapNhatTonKho.CongTonKho(IDHangHoa, SoLuong, IDChiNhanh); // cộng kho không qua bước duyệt
+                                // ghi lịch sử
+                                data.ThemChiTietDonHang(ID, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, ThanhTien);
+                            }
+                            data = new dtThemDonHangKho();
+                            data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
+                            Response.Redirect("DanhSachPhieuDatHang.aspx");
+                        }
+                    }
+                    else
+                    {
+                        txtBarcode.Focus();
+                        Response.Write("<script language='JavaScript'> alert('Danh sách nguyên liệu rỗng.'); </script>");
+                    }
                 }
             }
             else
             {
                 cmbNhaCungCap.Focus();
-                Response.Write("<script language='JavaScript'> alert('Vui lòng chọn nhà cung cấp.'); </script>");
+                Response.Write("<script language='JavaScript'> alert('Vui lòng chọn nhà cung cấp & nhập trả trước.'); </script>");
             }
         }
         protected void btnHuy_Click(object sender, EventArgs e)
@@ -141,13 +149,7 @@ namespace BanHang
         {
             txtNgayLap.Date = DateTime.Today;
         }
-        protected void cmbNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbNhaCungCap.Text != "")
-            {
-                ckThanhToan.Enabled = true;
-            }
-        } 
+       
         protected void gridDanhSachHangHoa_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             if (e.NewValues["SoLuong"] != null && e.NewValues["DonGia"] != null)
@@ -177,7 +179,7 @@ namespace BanHang
         protected void btnThemTam_Click(object sender, EventArgs e)
         {
             dtBanHangLe dt = new dtBanHangLe();
-            DataTable tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString(), Session["IDKho"].ToString());
+            DataTable tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString());
             if (tbThongTin.Rows.Count > 0)
             {
                 string IDKho = Session["IDKho"].ToString();
@@ -200,6 +202,9 @@ namespace BanHang
                     txtTongTien.Text = TinhTongTien().ToString();
                 }
                 LoadGrid(IDDonHang);
+                txtBarcode.Text = "";
+                txtBarcode.Focus();
+                txtBarcode.Value = "";
             }
             else
             {

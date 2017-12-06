@@ -91,7 +91,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public void CapNhatDonDatHang(object ID, string SoDonHang, string IDNguoiLap, DateTime NgayLap, string TongTien, string GhiChu, string IDNhaCungCap, int TrangThaiCongNo)
+        public void CapNhatDonDatHang(object ID, string SoDonHang, string IDNguoiLap, DateTime NgayLap, string TongTien, string GhiChu, string IDNhaCungCap, int TrangThaiCongNo, double TraTruoc, double ConLai)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -99,13 +99,14 @@ namespace BanHang.Data
                 {
                     myConnection.Open();
 
-                    string cmdText = "UPDATE [GPM_DonDatHang] SET [TrangThaiCongNo] = @TrangThaiCongNo,[IDNhaCungCap] = @IDNhaCungCap, [SoDonHang] = @SoDonHang, [IDNguoiLap] = @IDNguoiLap,[NgayLap] = @NgayLap,[TongTien] = @TongTien,[GhiChu] = @GhiChu WHERE ID = @ID";
+                    string cmdText = "UPDATE [GPM_DonDatHang] SET [ConLai] = @ConLai,[TraTruoc] = @TraTruoc,[TrangThaiCongNo] = @TrangThaiCongNo,[IDNhaCungCap] = @IDNhaCungCap, [SoDonHang] = @SoDonHang, [IDNguoiLap] = @IDNguoiLap,[NgayLap] = @NgayLap,[TongTien] = @TongTien,[GhiChu] = @GhiChu WHERE ID = @ID";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
+                        myCommand.Parameters.AddWithValue("@TraTruoc", TraTruoc);
+                        myCommand.Parameters.AddWithValue("@ConLai", ConLai);
                         myCommand.Parameters.AddWithValue("@ID", ID);
                         myCommand.Parameters.AddWithValue("@TrangThaiCongNo", TrangThaiCongNo);
                         myCommand.Parameters.AddWithValue("@IDNhaCungCap", IDNhaCungCap);
-                     
                         myCommand.Parameters.AddWithValue("@SoDonHang", SoDonHang);
                         myCommand.Parameters.AddWithValue("@IDNguoiLap", IDNguoiLap);
                         myCommand.Parameters.AddWithValue("@NgayLap", NgayLap);

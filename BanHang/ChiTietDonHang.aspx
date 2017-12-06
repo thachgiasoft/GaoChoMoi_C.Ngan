@@ -53,7 +53,7 @@
         <propertiesspinedit DisplayFormatString="N0"></propertiesspinedit>
     </dx:GridViewDataSpinEditColumn>
     <dx:GridViewDataSpinEditColumn Caption="Đơn Giá" FieldName="DonGia" VisibleIndex="4" ReadOnly="True">
-        <propertiesspinedit DisplayFormatString="{0:#,# VND}"></propertiesspinedit>
+        <propertiesspinedit DisplayFormatString="N0"></propertiesspinedit>
     </dx:GridViewDataSpinEditColumn>
     <dx:GridViewDataTextColumn Caption="Mã Hàng Hóa" FieldName="MaHangHoa" VisibleIndex="0" ReadOnly="True">
     </dx:GridViewDataTextColumn>
