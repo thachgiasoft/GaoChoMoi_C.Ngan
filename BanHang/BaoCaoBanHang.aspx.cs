@@ -45,6 +45,8 @@ namespace BanHang
                 rbTheoNam.Checked = false;
                 dateNgayBD.Enabled = true;
                 dateNgayKT.Enabled = true;
+                dateNgayBD.Value = DateTime.Today;
+                dateNgayKT.Value = DateTime.Today;
             }
         }
 

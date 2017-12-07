@@ -542,6 +542,7 @@
             this.xrTable4.StylePriority.UseFont = false;
             this.xrTable4.StylePriority.UseTextAlignment = false;
             this.xrTable4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrTable4.Visible = false;
             // 
             // xrTableRow4
             // 
