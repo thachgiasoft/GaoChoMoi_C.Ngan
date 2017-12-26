@@ -10,33 +10,24 @@
 namespace BanHang {
     
     
-    public partial class DanhSachChiPhi {
+    public partial class QLChiPhi {
         
         /// <summary>
-        /// gridDanhSach control.
+        /// ASPxFormLayout1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridDanhSach;
+        protected global::DevExpress.Web.ASPxFormLayout ASPxFormLayout1;
         
         /// <summary>
-        /// sqlTrangThaiChiPhi control.
+        /// gridChiPhi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sqlTrangThaiChiPhi;
-        
-        /// <summary>
-        /// popup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl popup;
+        protected global::DevExpress.Web.ASPxGridView gridChiPhi;
     }
 }

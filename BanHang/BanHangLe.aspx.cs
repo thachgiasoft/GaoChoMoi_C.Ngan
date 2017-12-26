@@ -259,7 +259,7 @@ namespace BanHang
             bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
             if (!isNumeric)
             {
-                txtKhachThanhToan.Text = "";
+                //txtKhachThanhToan.Text = "0";
                 txtKhachThanhToan.Focus();
                 HienThiThongBao("Nhập không đúng số tiền !!"); return;
             }
@@ -336,7 +336,7 @@ namespace BanHang
                 {
                     if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
                     {
-                        txtKhachThanhToan.Text = "";
+                        txtKhachThanhToan.Text = "0";
                         txtKhachThanhToan.Focus();
                         HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
                     }

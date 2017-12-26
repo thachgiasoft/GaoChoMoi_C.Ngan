@@ -45,6 +45,11 @@ namespace BanHang
             rp.Parameters["strLai"].Value = strDoanhSoBanHang - strHangBanBiTraLai - strGiaVonBanHang - strCacKhoanChi;
             rp.Parameters["strLai"].Visible = false;
 
+            rp.Parameters["strCongNoKH"].Value = dataBCTongHop.strCongNoKH();
+            rp.Parameters["strCongNoKH"].Visible = false;
+            rp.Parameters["strCongNoNCC"].Value = dataBCTongHop.strCongNoNCC();
+            rp.Parameters["strCongNoNCC"].Visible = false;
+
             viewerReport.Report = rp;
         }
     }

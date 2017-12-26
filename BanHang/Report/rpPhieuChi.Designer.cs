@@ -284,7 +284,7 @@
             // xrLabel13
             // 
             this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.NgayBan", "{0:dd}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ChiPhi.NgayChi", "{0:dd}")});
             this.xrLabel13.Dpi = 100F;
             this.xrLabel13.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(241.9768F, 127.5238F);
@@ -311,7 +311,7 @@
             // xrLabel15
             // 
             this.xrLabel15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.NgayBan", "{0:MM}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ChiPhi.NgayChi", "{0:MM}")});
             this.xrLabel15.Dpi = 100F;
             this.xrLabel15.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(302.176F, 127.5238F);
@@ -338,7 +338,7 @@
             // xrLabel18
             // 
             this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.NgayBan", "{0:yyyy}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ChiPhi.NgayChi", "{0:yyyy}")});
             this.xrLabel18.Dpi = 100F;
             this.xrLabel18.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(358.0122F, 127.5238F);

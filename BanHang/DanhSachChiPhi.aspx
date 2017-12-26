@@ -91,11 +91,7 @@
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
             <dx:GridViewDataComboBoxColumn Caption="Loại Phí Chi" FieldName="TrangThai" VisibleIndex="5">
-                <PropertiesComboBox>
-                    <Items>
-                        <dx:ListEditItem Text="Chi Phí Nhân Công" Value="0" />
-                        <dx:ListEditItem Text="Chi Phí Vận Chuyển" Value="1" />
-                    </Items>
+                <PropertiesComboBox DataSourceID="sqlTrangThaiChiPhi" TextField="TrangThai" ValueField="ID">
                     <ValidationSettings SetFocusOnError="True">
                         <RequiredField IsRequired="True" />
                     </ValidationSettings>
@@ -116,6 +112,7 @@
             </TitlePanel>
         </Styles>
     </dx:ASPxGridView>
+    <asp:SqlDataSource ID="sqlTrangThaiChiPhi" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT * FROM [GPM_TrangThaiChi]"></asp:SqlDataSource>
     <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
          PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1100px"
          Height="600px" FooterText="Thông tin"
