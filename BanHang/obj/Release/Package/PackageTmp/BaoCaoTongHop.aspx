@@ -60,7 +60,7 @@
                     <dx:LayoutItem Caption="">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
-                                <dx:ASPxButton ID="btnXemBaoCao" runat="server" Text="Xem báo cáo" Width="100%" OnClick="btnXemBaoCao_Click">
+                                <dx:ASPxButton ID="btnXemBaoCao" runat="server" Text="In" Width="100%" OnClick="btnXemBaoCao_Click">
                                     <Image IconID="print_printarea_16x16">
                                     </Image>
                                 </dx:ASPxButton>
@@ -77,8 +77,8 @@
         <SettingsItems HorizontalAlign="Center" />
     </dx:ASPxFormLayout>
     <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
-         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1000px"
-         Height="550px" FooterText="Thông tin tổng hợp"
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1250px"
+         Height="700px" FooterText="Thông tin tổng hợp"
         HeaderText="Thông tin chi tiết" ClientInstanceName="popup" EnableHierarchyRecreation="True">
     </dx:ASPxPopupControl>
 </asp:Content>

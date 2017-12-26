@@ -28,20 +28,7 @@
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
-                    <dx:LayoutItem Caption="Kho Điều Chỉnh">
-                        <LayoutItemNestedControlCollection>
-                            <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxComboBox ID="cmbKho" runat="server" Enabled="False" Width="100%" DataSourceID="SqlChiNhanh" TextField="TenCuaHang" ValueField="ID">
-                                </dx:ASPxComboBox>
-                                <asp:SqlDataSource ID="SqlChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenCuaHang] FROM [GPM_Kho] WHERE ([DaXoa] = @DaXoa)">
-                                    <SelectParameters>
-                                        <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
-                            </dx:LayoutItemNestedControlContainer>
-                        </LayoutItemNestedControlCollection>
-                    </dx:LayoutItem>
-                    <dx:LayoutItem Caption="Ghi Chú" ColSpan="3">
+                    <dx:LayoutItem Caption="Ghi Chú" ColSpan="4">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxTextBox ID="txtGhiChu" runat="server" Width="100%">
@@ -51,29 +38,40 @@
                     </dx:LayoutItem>
                 </Items>
             </dx:LayoutGroup>
-            <dx:LayoutGroup Caption="Kệ Hàng" ColCount="4" ColSpan="4">
+            <dx:LayoutGroup Caption="Hàng Hóa" ColCount="4" ColSpan="4">
                 <Items>
-                    <dx:LayoutItem Caption="Chọn Kệ Hàng" ColSpan="4">
+                    <dx:LayoutItem Caption="Chọn Hàng Hóa" ColSpan="3">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxComboBox ID="cmbKe" runat="server" ValueType="System.String" 
+                                <dx:ASPxComboBox ID="txtBarcode" runat="server" ValueType="System.String" 
                                         DropDownWidth="600" 
-                                        ValueField="ID" Width="100%"
-                                        EnableCallbackMode="true" AutoPostBack="True" DataSourceID="SqlDanhSachKe" OnSelectedIndexChanged="cmbKe_SelectedIndexChanged" TextField="TenKe" 
-                                        
+                                        ValueField="ID" 
+                                        NullText="Nhập tên hàng hóa..." Width="100%" TextFormatString="{1}"
+                                        EnableCallbackMode="true" CallbackPageSize="10" DataSourceID="dsHangHoa" 
                                         >                                    
                                         <Columns>
-                                            <dx:ListBoxColumn FieldName="TenKe" Width="150px" Caption="Tên Kệ" />
-                                            <dx:ListBoxColumn FieldName="ViTri" Width="200px" Caption="Vị Trí"/>
-                                            <dx:ListBoxColumn FieldName="MoTa" Width="100%" Caption="Mô Tả"/>
-                                           
+                                            <dx:ListBoxColumn FieldName="MaHang" Width="80px" Caption="Mã Hàng" />
+                                            <dx:ListBoxColumn FieldName="TenHangHoa" Width="250px" Caption="Tên Hàng Hóa"/>
+                                            <dx:ListBoxColumn FieldName="TenDonViTinh" Width="100px" Caption="Đơn Vị Tính"/>
                                         </Columns>
+                                        <DropDownButton Visible="False">
+                                        </DropDownButton>
                                     </dx:ASPxComboBox>
-                                    <asp:SqlDataSource ID="SqlDanhSachKe" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT * FROM [GPM_Ke] WHERE ([IDKho] = @IDKho)" >                                       
+                                    <asp:SqlDataSource ID="dsHangHoa" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [GPM_HangHoa].[ID], [GPM_HangHoa].[MaHang], [GPM_HangHoa].[TenHangHoa], [GPM_HangHoa].[IDDonViTinh],[GPM_DonViTinh].TenDonViTinh FROM [GPM_HangHoa],[GPM_DonViTinh] WHERE ([GPM_HangHoa].[DaXoa] = @DaXoa AND [GPM_HangHoa].IDDonViTinh = [GPM_DonViTinh].ID)" >                                       
                                         <SelectParameters>
-                                            <asp:SessionParameter Name="IDKho" SessionField="IDKho" Type="Int32" />
+                                            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                                         </SelectParameters>
                                     </asp:SqlDataSource>
+                            </dx:LayoutItemNestedControlContainer>
+                        </LayoutItemNestedControlCollection>
+                    </dx:LayoutItem>
+                    <dx:LayoutItem Caption="">
+                        <LayoutItemNestedControlCollection>
+                            <dx:LayoutItemNestedControlContainer runat="server">
+                                <dx:ASPxButton ID="btnThemTemp" runat="server" OnClick="btnThemTemp_Click" Text="Thêm">
+                                    <Image IconID="actions_add_32x32">
+                                    </Image>
+                                </dx:ASPxButton>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>

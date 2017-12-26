@@ -245,7 +245,7 @@
                                 </dx:ASPxButton>                                
                             </td>
                             <td align="right" width="50%">
-                                 <dx:ASPxButton ID="ASPxButton2" runat="server" OnClick="ASPxButton1_Click" RenderMode="Link" Text="Thêm KH">
+                                 <dx:ASPxButton ID="ASPxButton2" runat="server" OnClick="ASPxButton1_Click" RenderMode="Link" Text="Thêm Khách Hàng">
                                      <Image IconID="actions_newemployee_32x32devav" ToolTip="Thêm khách hàng">
                                      </Image>
                                  </dx:ASPxButton>
@@ -505,19 +505,6 @@
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
                         <dx:ASPxTextBox ID="txtTenKhachHang" runat="server" Width="100%">
                         </dx:ASPxTextBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Chiết Khấu(*)" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer runat="server">
-                        <dx:ASPxComboBox ID="cmbChietKhau" runat="server" Width="100%" DataSourceID="SqlChietKhau" TextField="TenChietKhau" ValueField="ID">
-                        </dx:ASPxComboBox>
-                        <asp:SqlDataSource ID="SqlChietKhau" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenChietKhau] FROM [GPM_ChietKhau] WHERE ([DaXoa] = @DaXoa)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>

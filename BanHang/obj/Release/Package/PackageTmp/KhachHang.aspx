@@ -1,32 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="KhachHang.aspx.cs" Inherits="BanHang.KhachHang" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-     <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
+    <dx:ASPxFormLayout ID="ASPxFormLayout3" runat="server" ColCount="2" Width="100%">
         <Items>
             <dx:LayoutItem Caption="">
                 <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                        <dx:ASPxButton ID="btnChietKhau" runat="server" Text="Thanh Toán Tiền Chiết Khấu" PostBackUrl="ThanhToanChietKhau.aspx">
-                            <Image IconID="businessobjects_bosale_32x32">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                        <dx:ASPxButton ID="btnCongNo" runat="server" Text="Thanh Toán Tiền Công Nợ" OnClick="btnCongNo_Click">
-                            <Image IconID="content_notes_32x32">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="">
-                <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer runat="server">
-                        <dx:ASPxButton ID="btnThanhToanChietKhau" runat="server" Text="Đã Thanh Toán Chiết Khấu" PostBackUrl="ChiTietThanhToanChietKhau.aspx">
-                            <Image IconID="filterelements_checkbuttons_32x32">
+                       <dx:ASPxButton ID="btnCongNo" runat="server" Text="Thanh Toán Tiền Công Nợ" OnClick="btnCongNo_Click">
+                            <Image IconID="content_notes_32x32">
                             </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
@@ -43,8 +23,8 @@
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
         </Items>
-    </dx:ASPxFormLayout>
-    <dx:ASPxGridView ID="gridKhachHang" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridKhachHang_RowDeleting" OnRowInserting="gridKhachHang_RowInserting" OnRowUpdating="gridKhachHang_RowUpdating" OnInitNewRow="gridKhachHang_InitNewRow">
+     </dx:ASPxFormLayout>
+    <dx:ASPxGridView ID="gridKhachHang" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridKhachHang_RowDeleting" OnRowInserting="gridKhachHang_RowInserting" OnRowUpdating="gridKhachHang_RowUpdating">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
         <Settings ShowFilterRow="True" ShowTitlePanel="True" />
@@ -87,8 +67,6 @@
                         <dx:GridViewColumnLayoutItem ColumnName="Nhóm KH" Name="IDNhomKhachHang">
                         </dx:GridViewColumnLayoutItem>
                         <dx:GridViewColumnLayoutItem ColumnName="Tên KH" Name="TenKhachHang" Width="100%">
-                        </dx:GridViewColumnLayoutItem>
-                        <dx:GridViewColumnLayoutItem ColumnName="Chiết Khấu">
                         </dx:GridViewColumnLayoutItem>
                         <dx:GridViewColumnLayoutItem ColumnName="Ngày sinh" Name="NgaySinh">
                         </dx:GridViewColumnLayoutItem>
@@ -155,13 +133,6 @@
                 <PropertiesComboBox DataSourceID="SqlKho" TextField="TenCuaHang" ValueField="ID">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chiết Khấu" FieldName="IDChietKhau" VisibleIndex="3">
-                <PropertiesComboBox DisplayFormatString="g" DataSourceID="SqlChietKhau" TextField="TenChietKhau" ValueField="ID">
-                    <ValidationSettings SetFocusOnError="True">
-                        <RequiredField IsRequired="True" />
-                    </ValidationSettings>
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataSpinEditColumn Caption="Công Nợ" FieldName="CongNo" VisibleIndex="19">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
@@ -217,35 +188,10 @@
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
-            <dx:LayoutItem Caption="Hình Thức Thanh Toán" ColSpan="2" RowSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                        <dx:ASPxComboBox ID="cmbHinhThucThanhToan" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbHinhThucThanhToan_SelectedIndexChanged" Width="100%" Enabled="False">
-                            <Items>
-                                <dx:ListEditItem Text="Công Nợ Giảm Dần" Value="0" />
-                                <dx:ListEditItem Text="Theo Phiếu Giao Hàng" Value="1" />
-                            </Items>
-                        </dx:ASPxComboBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Chọn Mã Phiếu" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">
-                        <dx:ASPxComboBox ID="txtMaPhieu" runat="server" Width="100%" Enabled="False" ValueField="ID" AutoPostBack="True" TextFormatString="{0}" OnSelectedIndexChanged="txtMaPhieu_SelectedIndexChanged">
-                             <Columns>
-                                    <dx:ListBoxColumn Caption="Mã Phiếu" FieldName="MaHoaDon" Width="120px" />
-                                    <dx:ListBoxColumn Caption="Tổng Tiền " FieldName="TongTien" Width="100px" />
-                                    <dx:ListBoxColumn Caption="Ngày lập phiếu" FieldName="NgayBan" Width="120px" />               
-                                </Columns>
-                        </dx:ASPxComboBox>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
             <dx:LayoutItem Caption="Số Tiền Thanh Toán" ColSpan="2">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
-                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0" Enabled="False">
+                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0">
                         </dx:ASPxSpinEdit>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -278,6 +224,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer11" runat="server">
                         <dx:ASPxButton ID="btnCapNhatThanhToan" runat="server" Text="Cập Nhật" OnClick="btnCapNhatThanhToan_Click" >
+                            <Image IconID="actions_apply_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
@@ -286,6 +234,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer12" runat="server">
                         <dx:ASPxButton ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click">
+                            <Image IconID="actions_cancel_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>

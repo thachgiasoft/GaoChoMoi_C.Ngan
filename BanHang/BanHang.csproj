@@ -173,6 +173,7 @@
     <Content Include="image\thuho.png" />
     <Content Include="image\trangchu.png" />
     <Content Include="InBaoCaoTongHop.aspx" />
+    <Content Include="InPhieuChi.aspx" />
     <Content Include="InPhieuGiaoHang.aspx" />
     <Content Include="InPhieuThanhToan.aspx" />
     <Content Include="InPhieuThanhToan1.aspx" />
@@ -205,6 +206,7 @@
     <Content Include="PhieuNhapHang.aspx" />
     <Content Include="PhieuXuatKhac.aspx" />
     <Content Include="PhieuXuatTra.aspx" />
+    <Content Include="QLChiPhi.aspx" />
     <Content Include="QuanTriNguoiDung.aspx" />
     <Content Include="Root.master" />
   </ItemGroup>
@@ -536,6 +538,7 @@
     <Compile Include="DanhSachPhieuXuatTra.aspx.designer.cs">
       <DependentUpon>DanhSachPhieuXuatTra.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\dataBCTongHop.cs" />
     <Compile Include="Data\dataHangHoa.cs" />
     <Compile Include="Data\dataNhomHang.cs" />
     <Compile Include="Data\dtBanHangLe.cs" />
@@ -576,6 +579,7 @@
     <Compile Include="Data\dtPhieuKhachHangTraHang.cs" />
     <Compile Include="Data\dtPhieuXuatKhac.cs" />
     <Compile Include="Data\dtPhieuXuatTra.cs" />
+    <Compile Include="Data\dtQLChiPhi.cs" />
     <Compile Include="Data\dtQuanTriNguoiDung.cs" />
     <Compile Include="Data\dtSetting.cs" />
     <Compile Include="Data\dtThanhToanChietKhau.cs" />
@@ -628,6 +632,13 @@
     </Compile>
     <Compile Include="InBaoCaoTongHop.aspx.designer.cs">
       <DependentUpon>InBaoCaoTongHop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InPhieuChi.aspx.cs">
+      <DependentUpon>InPhieuChi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InPhieuChi.aspx.designer.cs">
+      <DependentUpon>InPhieuChi.aspx</DependentUpon>
     </Compile>
     <Compile Include="InPhieuGiaoHang.aspx.cs">
       <DependentUpon>InPhieuGiaoHang.aspx</DependentUpon>
@@ -802,6 +813,13 @@
       <DependentUpon>PhieuXuatTra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLChiPhi.aspx.cs">
+      <DependentUpon>QLChiPhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QLChiPhi.aspx.designer.cs">
+      <DependentUpon>QLChiPhi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QuanTriNguoiDung.aspx.cs">
       <DependentUpon>QuanTriNguoiDung.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -850,6 +868,12 @@
     </Compile>
     <Compile Include="Report\rpBaoCaoTonKho.designer.cs">
       <DependentUpon>rpBaoCaoTonKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\rpPhieuChi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rpPhieuChi.Designer.cs">
+      <DependentUpon>rpPhieuChi.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\rpPhieuGiaoHang.cs">
       <SubType>Component</SubType>
@@ -993,6 +1017,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rpBaoCaoTonKho.resx">
       <DependentUpon>rpBaoCaoTonKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rpPhieuChi.resx">
+      <DependentUpon>rpPhieuChi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rpPhieuGiaoHang.resx">
       <DependentUpon>rpPhieuGiaoHang.cs</DependentUpon>

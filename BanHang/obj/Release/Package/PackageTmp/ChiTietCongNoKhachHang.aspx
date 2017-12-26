@@ -43,11 +43,9 @@
             <EditForm HorizontalAlign="WindowCenter" Modal="True" VerticalAlign="WindowCenter" />
         </SettingsPopup>
         <SettingsSearchPanel Visible="True" />
-        <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" ConfirmDelete="Bạn có chắc chắn muốn xóa không?" PopupEditFormCaption="Thông tin đơn vị tính" Title="DANH SÁCH CHI TIẾT KHÁCH HÀNG THANH TOÁN CÔNG NỢ" EmptyDataRow="Danh sách trống." SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
+        <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" ConfirmDelete="Bạn có chắc chắn muốn xóa không?" PopupEditFormCaption="Thông tin đơn vị tính" Title="DANH SÁCH CÔNG NỢ KHÁCH HÀNG ĐÃ THANH TOÁN" EmptyDataRow="Danh sách trống." SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
          <Columns>
              <dx:GridViewDataTextColumn Caption="Số Đơn Hàng" FieldName="SoHoaDon" VisibleIndex="0">
-             </dx:GridViewDataTextColumn>
-             <dx:GridViewDataTextColumn Caption="Hình Thức Thanh Toán" FieldName="HinhThucThanhToan" VisibleIndex="2">
              </dx:GridViewDataTextColumn>
              <dx:GridViewDataTextColumn Caption="Nội Dung Thanh Toán" FieldName="NoiDung" VisibleIndex="4">
              </dx:GridViewDataTextColumn>
@@ -63,7 +61,7 @@
                  <PropertiesComboBox DataSourceID="SqlKhachHang" TextField="TenKhachHang" ValueField="ID">
                  </PropertiesComboBox>
              </dx:GridViewDataComboBoxColumn>
-             <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="6">
+             <dx:GridViewDataButtonEditColumn Caption="Chức Năng" VisibleIndex="6">
                 <DataItemTemplate>
                     <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
                 </DataItemTemplate>

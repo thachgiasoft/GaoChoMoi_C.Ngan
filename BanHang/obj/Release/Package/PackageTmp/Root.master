@@ -57,7 +57,9 @@
                                                     <dx:RibbonDropDownButtonItem Name="danh-muc" NavigateUrl="javascript:void(2)" 
                                                         Size="Large" Text="Danh Mục">
                                                         <Items>
-                                                            <dx:RibbonDropDownButtonItem Name="Chiết Khấu" NavigateUrl="ChietKhau.aspx" Text="Chiết Khấu">
+                                                            <dx:RibbonDropDownButtonItem Name="Chiết Khấu" NavigateUrl="ChietKhau.aspx" Text="Chiết Khấu" Visible="False">
+                                                            </dx:RibbonDropDownButtonItem>
+                                                            <dx:RibbonDropDownButtonItem Name="danh-sach-ke" NavigateUrl="DanhSachKe.aspx" Text="Danh Sách Kệ Hàng Hóa" Visible="False">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="nhom-khach-hang" NavigateUrl="NhomKhachHang.aspx" Text="Nhóm Khách Hàng">
                                                             </dx:RibbonDropDownButtonItem>
@@ -69,11 +71,13 @@
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="nha-cung-cap" NavigateUrl="NhaCungCap.aspx" Text="Nhà Cung Cấp">
                                                             </dx:RibbonDropDownButtonItem>
-                                                            <dx:RibbonDropDownButtonItem Name="danh-sach-ke" NavigateUrl="DanhSachKe.aspx" Text="Danh Sách Kệ Hàng Hóa">
-                                                            </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="nhom-hang" NavigateUrl="NhomHang.aspx" Text="Nhóm Hàng">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="danh-sach-hang-hoa" NavigateUrl="DanhSachHangHoa.aspx" Text="Hàng Hóa">
+                                                            </dx:RibbonDropDownButtonItem>
+                                                            <dx:RibbonDropDownButtonItem Name="Chi Phí" NavigateUrl="DanhSachChiPhi.aspx" Text="Chi Phí">
+                                                            </dx:RibbonDropDownButtonItem>
+                                                            <dx:RibbonDropDownButtonItem Name="loaichiphi" NavigateUrl="QLChiPhi.aspx" Text="Loại chi phí">
                                                             </dx:RibbonDropDownButtonItem>
                                                         </Items>
                                                         <LargeImage Url="~/image/danhsach.png">
@@ -189,7 +193,7 @@
                 </div>
             </ExpandBarTemplate>
         </dx:ASPxPanel>
-        <dx:ASPxLabel ID="lblChao" style="float:right; padding:5px;" runat="server"></dx:ASPxLabel> 
+       
         <dx:ASPxPanel ID="MainPane" runat="server" CssClass="mainContentPane">
             <PanelCollection>
                 <dx:PanelContent ID="PanelContent2" runat="server" SupportsDisabledAttribute="True">
@@ -208,6 +212,7 @@
                         <div style="text-align:center; padding:5px;">
                             <dx:ASPxLabel ID="ASPxLabel2" runat="server">
                             </dx:ASPxLabel> 
+                             <dx:ASPxLabel ID="lblChao" style="float:right; padding:5px;" runat="server"></dx:ASPxLabel> 
                         </div>
                 </dx:PanelContent>
             </PanelCollection>
