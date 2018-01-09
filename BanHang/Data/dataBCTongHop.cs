@@ -103,6 +103,7 @@ namespace BanHang.Data
                     {
                         int SL = 0;
                         float gia = 0;
+                        if (tb.Rows.Count == 0) return 0;
                         for (int i = 0; i < tb.Rows.Count; i++)
                         {
                             DataRow dr = tb.Rows[i];
